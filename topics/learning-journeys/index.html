@@ -259,55 +259,6 @@ nav.main{margin-left:auto}
 </div></footer>
 
 <script>
-/* Live Journal feeds: the three latest Wix Blog posts, per page category. Add a post in the Wix Blog, pick its category, and it appears here. */
-(function(){
-  const CLIENT_ID='af19981c-8c44-4ad2-b015-40e5faeea5e4';
-  const BLOG='https://www.kaaya-offline.com/blog';
-  const FEEDS={
-    home:{title:'From the Journal'},
-    journal:{title:'Latest from the Journal'},
-    idea:{title:'Origins',cat:'1ba44c37-a019-429f-a92a-e0eec9ed4ea1',slug:'origins'},
-    community:{title:'Neighbourhoods',cat:'37120d9a-e728-4c1d-b7da-77c335357d21',slug:'neighbourhoods'},
-    fellowships:{title:'Field Notes',cat:'1a25a862-e5da-4ef9-ae2c-0231be4e9931',slug:'field-notes'},
-    learning:{title:'Learning Journeys',cat:'40aa1ec6-6f46-4873-b5b4-ebc0eec1555e',slug:'learning-journeys'},
-    model:{title:'Reflections',cat:'58fb5d24-8f5a-4f53-8faf-e3de49630f27',slug:'reflections'}
-  };
-  // Snapshot shown if the live blog can't be reached.
-  const SNAP={"idea": [{"title": "Re-imagining the Kaccha Ghar", "excerpt": "The village of Tilwari in Uttarakhand is witnessing a quiet rise in newly constructed mud houses.", "date": "2026-06-24", "img": "/img/blog/re-imagining-the-kaccha-ghar.jpg", "url": "https://www.kaaya-offline.com/post/re-imagining-the-kaccha-ghar"}, {"title": "Making of Kaaya", "excerpt": "Kaaya evolved out of a realisation of the growing disconnect from the things that really matter in life.", "date": "2026-06-24", "img": "/img/blog/making-of-kaaya.jpg", "url": "https://www.kaaya-offline.com/post/making-of-kaaya"}, {"title": "Padav Fellowships", "excerpt": "A fellowship programme in the arts and performing arts.", "date": "2023-06-06", "img": "/img/blog/padav-fellowships.jpg", "url": "https://www.kaaya-offline.com/post/padav-fellowships"}], "community": [{"title": "Re-imagining the Kaccha Ghar", "excerpt": "The village of Tilwari in Uttarakhand is witnessing a quiet rise in newly constructed mud houses.", "date": "2026-06-24", "img": "/img/blog/re-imagining-the-kaccha-ghar.jpg", "url": "https://www.kaaya-offline.com/post/re-imagining-the-kaccha-ghar"}, {"title": "Towards farmer's market", "excerpt": "There is a quiet problem that most villages live with and rarely name. Every week, money leaves.", "date": "2026-06-24", "img": "/img/blog/towards-farmer-s-market.jpg", "url": "https://www.kaaya-offline.com/post/towards-farmer-s-market"}, {"title": "Feminine Spaces: Transforming Tourism", "excerpt": "Part of the series on climate change and sustainable living initiated by Kaaya.", "date": "2023-08-30", "img": "/img/blog/feminine-spaces-transforming-tourism.jpg", "url": "https://www.kaaya-offline.com/post/feminine-spaces-transforming-tourism"}], "fellowships": [{"title": "A Reflection on Padav 2026", "excerpt": "A particular kind of learning happens when artists from different valleys sit together and show each other their work.", "date": "2026-06-23", "img": "/img/blog/a-reflection-on-padav-2026.jpg", "url": "https://www.kaaya-offline.com/post/a-reflection-on-padav-2026"}, {"title": "Intern speaks", "excerpt": "Shagun Manwal on two weeks of plant identification, labelling and learning at Kaaya.", "date": "2024-01-20", "img": "/img/blog/intern-speaks.jpg", "url": "https://www.kaaya-offline.com/post/intern-speaks"}, {"title": "Art-Eco: Part 1", "excerpt": "A week-long journey of international plein air artists at Kaaya.", "date": "2019-12-20", "img": "", "url": "https://www.kaaya-offline.com/post/art-eco-part-1"}], "learning": [{"title": "Camp Reflections", "excerpt": "A summer camp is more than a digital detox: a chance to grow social skills, emotional intelligence and self-confidence.", "date": "2023-06-06", "img": "", "url": "https://www.kaaya-offline.com/post/camp-reflections"}, {"title": "Educational Tour", "excerpt": "In classrooms, students engage with pressing global issues. At Kaaya, they get the field context to link them together.", "date": "2022-11-02", "img": "", "url": "https://www.kaaya-offline.com/post/educational-tour"}], "model": [{"title": "If Everyone Is a Social Enterprise, What Does the Term Actually Mean?", "excerpt": "A decade ago, the development sector spoke the language of NGOs, charities, and philanthropy. Today, a new term dominates.", "date": "2026-06-24", "img": "/img/blog/if-everyone-is-a-social-enterprise-what-.jpg", "url": "https://www.kaaya-offline.com/post/if-everyone-is-a-social-enterprise-what-does-the-term-actually-mean"}, {"title": "Feminine Spaces: Transforming Tourism", "excerpt": "Part of the series on climate change and sustainable living initiated by Kaaya.", "date": "2023-08-30", "img": "/img/blog/feminine-spaces-transforming-tourism.jpg", "url": "https://www.kaaya-offline.com/post/feminine-spaces-transforming-tourism"}], "home": [{"title": "If Everyone Is a Social Enterprise, What Does the Term Actually Mean?", "excerpt": "A decade ago, the development sector spoke the language of NGOs, charities, and philanthropy. Today, a new term dominates.", "date": "2026-06-24", "img": "/img/blog/if-everyone-is-a-social-enterprise-what-.jpg", "url": "https://www.kaaya-offline.com/post/if-everyone-is-a-social-enterprise-what-does-the-term-actually-mean"}, {"title": "Re-imagining the Kaccha Ghar", "excerpt": "The village of Tilwari in Uttarakhand is witnessing a quiet rise in newly constructed mud houses.", "date": "2026-06-24", "img": "/img/blog/re-imagining-the-kaccha-ghar.jpg", "url": "https://www.kaaya-offline.com/post/re-imagining-the-kaccha-ghar"}, {"title": "Making of Kaaya", "excerpt": "Kaaya evolved out of a realisation of the growing disconnect from the things that really matter in life.", "date": "2026-06-24", "img": "/img/blog/making-of-kaaya.jpg", "url": "https://www.kaaya-offline.com/post/making-of-kaaya"}], "journal": [{"title": "If Everyone Is a Social Enterprise, What Does the Term Actually Mean?", "excerpt": "A decade ago, the development sector spoke the language of NGOs, charities, and philanthropy. Today, a new term dominates.", "date": "2026-06-24", "img": "/img/blog/if-everyone-is-a-social-enterprise-what-.jpg", "url": "https://www.kaaya-offline.com/post/if-everyone-is-a-social-enterprise-what-does-the-term-actually-mean"}, {"title": "Re-imagining the Kaccha Ghar", "excerpt": "The village of Tilwari in Uttarakhand is witnessing a quiet rise in newly constructed mud houses.", "date": "2026-06-24", "img": "/img/blog/re-imagining-the-kaccha-ghar.jpg", "url": "https://www.kaaya-offline.com/post/re-imagining-the-kaccha-ghar"}, {"title": "Making of Kaaya", "excerpt": "Kaaya evolved out of a realisation of the growing disconnect from the things that really matter in life.", "date": "2026-06-24", "img": "/img/blog/making-of-kaaya.jpg", "url": "https://www.kaaya-offline.com/post/making-of-kaaya"}]};
-  const LOCAL={"making-of-kaaya": "/img/blog/making-of-kaaya.jpg", "padav-fellowships": "/img/blog/padav-fellowships.jpg", "re-imagining-the-kaccha-ghar": "/img/blog/re-imagining-the-kaccha-ghar.jpg", "towards-farmer-s-market": "/img/blog/towards-farmer-s-market.jpg", "feminine-spaces-transforming-tourism": "/img/blog/feminine-spaces-transforming-tourism.jpg", "a-reflection-on-padav-2026": "/img/blog/a-reflection-on-padav-2026.jpg", "intern-speaks": "/img/blog/intern-speaks.jpg", "if-everyone-is-a-social-enterprise-what-does-the-term-actually-mean": "/img/blog/if-everyone-is-a-social-enterprise-what-.jpg"};
-  const esc=t=>String(t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const fmt=d=>{try{return new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}};
-  const thumb=u=>u&&u.startsWith('https://static.wixstatic.com')?u+'/v1/fill/w_720,h_480,al_c,q_80/cover.jpg':u;
-  function card(p){const sl=(p.url||'').split('/').pop(); if(LOCAL[sl]) p.img=LOCAL[sl];
-    return '<article class="card">'+(p.img?'<img loading="lazy" src="'+esc(thumb(p.img))+'" alt="'+esc(p.title)+'">':'')+'<div class="b"><span class="meta">'+esc(fmt(p.date))+'</span><h3>'+esc(p.title)+'</h3><p>'+esc(p.excerpt)+'</p><a class="more" href="/journal/'+esc(sl)+'/">Read more →</a></div></article>';}
-  function render(el,f,posts){
-    const all=f.slug?'/topics/'+f.slug+'/':'/topics/';
-    el.querySelector('.cards').innerHTML=posts.length?posts.map(card).join(''):'<p class="empty">The first stories here are on their way.</p>';
-    el.querySelector('.all').href=all;
-  }
-  let tok=null;
-  async function token(){
-    if(tok) return tok;
-    const r=await fetch('https://www.wixapis.com/oauth2/token',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clientId:CLIENT_ID,grantType:'anonymous'})});
-    tok=(await r.json()).access_token; return tok;
-  }
-  async function load(f){
-    const q=new URLSearchParams({'paging.limit':'3',fieldsets:'URL'}); if(f.cat) q.append('categoryIds',f.cat);
-    const r=await fetch('https://www.wixapis.com/blog/v3/posts?'+q,{headers:{Authorization:await token()}});
-    if(!r.ok) throw new Error(r.status);
-    return ((await r.json()).posts||[]).map(p=>({title:p.title,excerpt:p.excerpt,date:p.firstPublishedDate,img:p.media&&p.media.wixMedia&&p.media.wixMedia.image&&p.media.wixMedia.image.url,url:p.url?p.url.base+p.url.path:BLOG}));
-  }
-  window.KAAYA={FEEDS,card,token,esc,fmt,thumb,BLOG};
-  Object.entries(FEEDS).forEach(([page,f])=>{
-    const view=document.querySelector('[data-page="'+page+'"]'); if(!view) return;
-    const sec=document.createElement('section'); sec.className='feed';
-    sec.innerHTML='<h2>'+esc(f.title)+'</h2><div class="cards" aria-busy="true"></div><a class="all">All '+esc(f.slug?f.title.toLowerCase():'Journal posts')+' →</a>';
-    view.appendChild(sec);
-    load(f).then(p=>render(sec,f,p)).catch(()=>render(sec,f,SNAP[page]||[]));
-  });
-})();
-</script>
-<script>
 (function(){
   // Each page is its own file; the body says which one it is.
   function show(){
@@ -318,92 +269,8 @@ nav.main{margin-left:auto}
       if (a.dataset.view === navKey) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
     if (key === 'post' && !b.prerendered) {
-      const m = location.pathname.match(/^\/journal\/([^\/]+)\/?$/);
-      const slug = b.arg || (m && decodeURIComponent(m[1]));
-      if (slug) loadPost(slug);
-      else document.querySelector('#view-post .post-body').innerHTML = '<h1>This page is not here</h1><p>It may have moved. <a href="/">Go to the home page</a> or <a href="/journal/">read the Journal</a>.</p>';
+      document.querySelector('#view-post .post-body').innerHTML = '<h1>This page is not here</h1><p>It may have moved. <a href="/">Go to the home page</a> or <a href="/journal/">read the Journal</a>.</p>';
     }
-    if (key === 'blog') loadBlog(b.arg || '');
-  }
-  const K = () => window.KAAYA;
-  const API = 'https://www.wixapis.com/blog/v3';
-  function txt(n){
-    if (n.type === 'TEXT') {
-      let h = K().esc(n.textData.text);
-      for (const d of (n.textData.decorations || [])) {
-        if (d.type === 'BOLD') h = '<strong>' + h + '</strong>';
-        else if (d.type === 'ITALIC') h = '<em>' + h + '</em>';
-        else if (d.type === 'UNDERLINE') h = '<u>' + h + '</u>';
-        else if (d.type === 'LINK' && d.linkData && d.linkData.link && d.linkData.link.url) h = '<a href="' + K().esc(d.linkData.link.url) + '" target="_blank" rel="noopener">' + h + '</a>';
-      }
-      return h;
-    }
-    return kids(n);
-  }
-  const kids = n => (n.nodes || []).map(node).join('');
-  function media(src){
-    if (!src) return '';
-    if (src.url) return src.url;
-    if (src.id) return 'https://static.wixstatic.com/media/' + src.id;
-    return '';
-  }
-  function yt(u){ const m = String(u).match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : null; }
-  function node(n){
-    switch (n.type) {
-      case 'PARAGRAPH': { const c = kids(n); return c ? '<p>' + c + '</p>' : ''; }
-      case 'HEADING': { const l = Math.min(Math.max((n.headingData && n.headingData.level) || 2, 2), 4); return '<h' + l + '>' + kids(n) + '</h' + l + '>'; }
-      case 'BULLETED_LIST': return '<ul>' + kids(n) + '</ul>';
-      case 'ORDERED_LIST': return '<ol>' + kids(n) + '</ol>';
-      case 'LIST_ITEM': return '<li>' + kids(n).replace(/^<p>|<\/p>$/g, '') + '</li>';
-      case 'BLOCKQUOTE': return '<blockquote>' + kids(n) + '</blockquote>';
-      case 'DIVIDER': return '<hr>';
-      case 'TEXT': return txt(n);
-      case 'IMAGE': { const im = n.imageData && n.imageData.image; const u = im && media(im.src); return u ? '<figure><img loading="lazy" src="' + K().esc(u) + '" alt="' + K().esc((n.imageData.altText) || '') + '">' + (n.imageData.caption ? '<figcaption>' + K().esc(n.imageData.caption) + '</figcaption>' : '') + '</figure>' : ''; }
-      case 'VIDEO': {
-        const v = n.videoData && n.videoData.video; const u = v && v.src && v.src.url; const id = u && yt(u);
-        if (id) return '<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '" title="' + K().esc((n.videoData.title) || 'Video') + '" allowfullscreen loading="lazy"></iframe></div>';
-        if (v && v.src && v.src.id) return '<div class="vid"><video controls preload="metadata" src="https://video.wixstatic.com/video/' + K().esc(v.src.id) + '/file"></video></div>';
-        return u ? '<p><a href="' + K().esc(u) + '" target="_blank" rel="noopener">Watch the video ↗</a></p>' : '';
-      }
-      case 'LAYOUT': {
-        const bi = n.layoutData && n.layoutData.backdropImage && n.layoutData.backdropImage.media;
-        const u = bi && media(bi.src);
-        return u ? '<figure class="banner"><img src="' + K().esc(u) + '" alt=""><figcaption>' + kids(n).replace(/<\/?p>/g, '') + '</figcaption></figure>' : kids(n);
-      }
-      default: return kids(n);
-    }
-  }
-  async function loadPost(slug){
-    const box = document.querySelector('#view-post .post-body');
-    box.innerHTML = '<p class="empty">Loading…</p>';
-    try {
-      const r = await fetch(API + '/posts/slugs/' + encodeURIComponent(slug) + '?fieldsets=RICH_CONTENT', { headers: { Authorization: await K().token() } });
-      if (!r.ok) throw new Error(r.status);
-      const p = (await r.json()).post;
-      document.title = p.title + ' · Kaaya';
-      const cover = p.media && p.media.wixMedia && p.media.wixMedia.image && p.media.wixMedia.image.url;
-      const hasBanner = (p.richContent.nodes || []).some(x => x.type === 'LAYOUT');
-      box.innerHTML = '<p class="meta">' + K().esc(K().fmt(p.firstPublishedDate)) + (p.minutesToRead ? ' · ' + p.minutesToRead + ' min read' : '') + '</p><h1>' + K().esc(p.title) + '</h1>' +
-        (cover && !hasBanner ? '<figure class="banner"><img src="' + K().esc(cover) + '" alt=""></figure>' : '') +
-        (p.richContent.nodes || []).map(node).join('');
-      const sb = document.querySelector('.share');
-      if (sb) { sb.dataset.title = p.title; sb.dataset.url = 'https://kaaya.org/journal/' + p.slug + '/'; window.KAAYA_SHARE && window.KAAYA_SHARE(); }
-    } catch (e) {
-      box.innerHTML = '<p class="empty">This story could not be loaded just now. Please try again in a moment.</p>';
-    }
-  }
-  async function loadBlog(slug){
-    const f = Object.values(K().FEEDS).find(x => x.slug === slug);
-    document.querySelector('#view-blog .blog-title').textContent = f ? f.title : 'All stories';
-    const cards = document.querySelector('#view-blog .cards');
-    cards.innerHTML = '<p class="empty">Loading…</p>';
-    try {
-      const q = new URLSearchParams({ 'paging.limit': '50', fieldsets: 'URL' }); if (f && f.cat) q.append('categoryIds', f.cat);
-      const r = await fetch(API + '/posts?' + q, { headers: { Authorization: await K().token() } });
-      if (!r.ok) throw new Error(r.status);
-      const posts = ((await r.json()).posts || []).map(p => ({ title: p.title, excerpt: p.excerpt, date: p.firstPublishedDate, img: p.media && p.media.wixMedia && p.media.wixMedia.image && p.media.wixMedia.image.url, url: p.url ? p.url.base + p.url.path : '/' + p.slug }));
-      cards.innerHTML = posts.length ? posts.map(K().card).join('') : '<p class="empty">The first stories here are on their way.</p>';
-    } catch (e) { cards.innerHTML = '<p class="empty">Stories could not be loaded just now.</p>'; }
   }
   const tb=document.querySelector('.theme-btn');
   if(tb){const mq=window.matchMedia('(prefers-color-scheme: dark)');
