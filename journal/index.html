@@ -300,7 +300,7 @@ nav.main{margin-left:auto}
   const fmt=d=>{try{return new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}};
   const thumb=u=>u&&u.startsWith('https://static.wixstatic.com')?u+'/v1/fill/w_720,h_480,al_c,q_80/cover.jpg':u;
   function card(p){const sl=(p.url||'').split('/').pop(); if(LOCAL[sl]) p.img=LOCAL[sl];
-    return '<article class="card">'+(p.img?'<img loading="lazy" src="'+esc(thumb(p.img))+'" alt="'+esc(p.title)+'">':'')+'<div class="b"><span class="meta">'+esc(fmt(p.date))+'</span><h3>'+esc(p.title)+'</h3><p>'+esc(p.excerpt)+'</p><a class="more" href="#post/'+esc(sl)+'">Read more →</a></div></article>';}
+    return '<article class="card">'+(p.img?'<img loading="lazy" src="'+esc(thumb(p.img))+'" alt="'+esc(p.title)+'">':'')+'<div class="b"><span class="meta">'+esc(fmt(p.date))+'</span><h3>'+esc(p.title)+'</h3><p>'+esc(p.excerpt)+'</p><a class="more" href="/journal/'+esc(sl)+'/">Read more →</a></div></article>';}
   function render(el,f,posts){
     const all=f.slug?'/topics/'+f.slug+'/':'/topics/';
     el.querySelector('.cards').innerHTML=posts.length?posts.map(card).join(''):'<p class="empty">The first stories here are on their way.</p>';
