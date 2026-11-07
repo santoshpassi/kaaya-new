@@ -1,15 +1,14 @@
-// Builds kaaya.org from src/template.html and the Wix Blog.
+// Builds kaaya.org from src/template.html and the Journal stories in content/journal/.
 // One real web address per section, per story and per topic, each with its own
 // title, description, share preview and share bar. Also writes sitemap.xml,
 // robots.txt and 404.html. Run: node build/build.mjs
 import fs from 'node:fs';
 import path from 'node:path';
+import { Marked } from './vendor/marked.esm.js';
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const SITE = 'https://kaaya.org';
-const CLIENT_ID = 'af19981c-8c44-4ad2-b015-40e5faeea5e4';
-const API = 'https://www.wixapis.com/blog/v3';
-const CACHE = path.join(ROOT, 'build', 'posts-cache.json');
+const POSTS_DIR = path.join(ROOT, 'content', 'journal');
 
 const SECTIONS = {
   home:        { path: '/',                        img: '/img/niche.jpg',        title: 'Kaaya · A mud-built learning campus in Tilwari, Dehradun' },
@@ -21,11 +20,22 @@ const SECTIONS = {
   model:       { path: '/the-model/',              img: '/img/team.jpg',         title: 'The model · Kaaya' },
 };
 const TOPICS = {
-  'origins':           { title: 'Origins',           cat: '1ba44c37-a019-429f-a92a-e0eec9ed4ea1' },
-  'neighbourhoods':    { title: 'Neighbourhoods',    cat: '37120d9a-e728-4c1d-b7da-77c335357d21' },
-  'field-notes':       { title: 'Field Notes',       cat: '1a25a862-e5da-4ef9-ae2c-0231be4e9931' },
-  'learning-journeys': { title: 'Learning Journeys', cat: '40aa1ec6-6f46-4873-b5b4-ebc0eec1555e' },
-  'reflections':       { title: 'Reflections',       cat: '58fb5d24-8f5a-4f53-8faf-e3de49630f27' },
+  'origins':           { title: 'Origins' },
+  'neighbourhoods':    { title: 'Neighbourhoods' },
+  'field-notes':       { title: 'Field Notes' },
+  'learning-journeys': { title: 'Learning Journeys' },
+  'reflections':       { title: 'Reflections' },
+};
+
+// Which Journal stories each section page shows at its foot (newest first).
+const FEEDS = {
+  home:        { title: 'From the Journal' },
+  journal:     { title: 'Latest from the Journal' },
+  idea:        { title: 'Origins',           topic: 'origins' },
+  community:   { title: 'Neighbourhoods',    topic: 'neighbourhoods' },
+  fellowships: { title: 'Field Notes',       topic: 'field-notes' },
+  learning:    { title: 'Learning Journeys', topic: 'learning-journeys' },
+  model:       { title: 'Reflections',       topic: 'reflections' },
 };
 
 const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -34,57 +44,78 @@ const clip = (t, n = 160) => { t = strip(t); return t.length <= n ? t : t.slice(
 const fmt = d => { try { return new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' }); } catch { return ''; } };
 const abs = u => !u ? '' : u.startsWith('http') ? u : SITE + u;
 
-// ---------- Wix ----------
-async function fetchPosts() {
-  const t = await fetch('https://www.wixapis.com/oauth2/token', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ clientId: CLIENT_ID, grantType: 'anonymous' }) });
-  const token = (await t.json()).access_token;
-  const r = await fetch(API + '/posts?paging.limit=100&fieldsets=URL', { headers: { Authorization: token } });
-  if (!r.ok) throw new Error('posts ' + r.status);
-  const list = (await r.json()).posts || [];
-  for (const p of list) {
-    const d = await fetch(API + '/posts/slugs/' + encodeURIComponent(p.slug) + '?fieldsets=RICH_CONTENT', { headers: { Authorization: token } });
-    if (d.ok) p.richContent = (await d.json()).post.richContent;
+// ---------- Journal stories: content/journal/<slug>.md ----------
+// Each file starts with front matter between --- lines (title, date, excerpt, cover, topics, ...),
+// then the story in Markdown. The editor at /admin writes these files.
+function frontMatter(text) {
+  const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  if (!m) return [{}, text];
+  const data = {}, lines = m[1].split(/\r?\n/);
+  const scalar = v => {
+    v = v.trim();
+    if (/^".*"$/.test(v)) { try { return JSON.parse(v); } catch { return v.slice(1, -1); } }
+    if (/^'.*'$/.test(v)) return v.slice(1, -1).replace(/''/g, "'");
+    if (v === 'true' || v === 'false') return v === 'true';
+    if (/^-?\d+(\.\d+)?$/.test(v)) return Number(v);
+    if (v === '' || v === '~' || v === 'null') return '';
+    return v;
+  };
+  for (let i = 0; i < lines.length; i++) {
+    const kv = lines[i].match(/^([A-Za-z_][\w-]*):\s*(.*)$/); if (!kv) continue;
+    const [, key, rest] = kv;
+    if (/^[|>][-+]?$/.test(rest)) {                       // block text: | or >
+      const block = []; while (i + 1 < lines.length && (/^\s+\S/.test(lines[i + 1]) || lines[i + 1].trim() === '')) block.push(lines[++i].replace(/^\s{2}/, ''));
+      data[key] = (rest[0] === '>' ? block.join(' ').replace(/\s+/g, ' ') : block.join('\n')).trim();
+    } else if (/^\[.*\]$/.test(rest.trim())) {             // [a, b]
+      const inner = rest.trim().slice(1, -1).trim();
+      data[key] = inner ? inner.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/).map(scalar).filter(x => x !== '') : [];
+    } else if (rest.trim() === '' && i + 1 < lines.length && /^\s*-\s/.test(lines[i + 1])) {  // - a\n- b
+      const list = []; while (i + 1 < lines.length && /^\s*-\s/.test(lines[i + 1])) list.push(scalar(lines[++i].replace(/^\s*-\s/, '')));
+      data[key] = list;
+    } else data[key] = scalar(rest);
   }
-  return list;
+  return [data, m[2]];
 }
 
-// ---------- Rich content to HTML (same as the page's own renderer) ----------
-const media = s => !s ? '' : s.url ? s.url : s.id ? 'https://static.wixstatic.com/media/' + s.id : '';
-const yt = u => { const m = String(u).match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/); return m ? m[1] : null; };
-const kids = n => (n.nodes || []).map(node).join('');
-function txt(n) {
-  let h = esc(n.textData.text);
-  for (const d of n.textData.decorations || []) {
-    if (d.type === 'BOLD') h = '<strong>' + h + '</strong>';
-    else if (d.type === 'ITALIC') h = '<em>' + h + '</em>';
-    else if (d.type === 'UNDERLINE') h = '<u>' + h + '</u>';
-    else if (d.type === 'LINK' && d.linkData?.link?.url) h = '<a href="' + esc(d.linkData.link.url) + '" target="_blank" rel="noopener">' + h + '</a>';
-  }
-  return h;
-}
-function node(n) {
-  switch (n.type) {
-    case 'PARAGRAPH': { const c = kids(n); return c ? '<p>' + c + '</p>' : ''; }
-    case 'HEADING': { const l = Math.min(Math.max(n.headingData?.level || 2, 2), 4); return '<h' + l + '>' + kids(n) + '</h' + l + '>'; }
-    case 'BULLETED_LIST': return '<ul>' + kids(n) + '</ul>';
-    case 'ORDERED_LIST': return '<ol>' + kids(n) + '</ol>';
-    case 'LIST_ITEM': return '<li>' + kids(n).replace(/^<p>|<\/p>$/g, '') + '</li>';
-    case 'BLOCKQUOTE': return '<blockquote>' + kids(n) + '</blockquote>';
-    case 'DIVIDER': return '<hr>';
-    case 'TEXT': return txt(n);
-    case 'IMAGE': { const im = n.imageData?.image; const u = im && media(im.src); return u ? '<figure><img loading="lazy" src="' + esc(u) + '" alt="' + esc(n.imageData.altText || '') + '">' + (n.imageData.caption ? '<figcaption>' + esc(n.imageData.caption) + '</figcaption>' : '') + '</figure>' : ''; }
-    case 'VIDEO': {
-      const v = n.videoData?.video; const u = v?.src?.url; const id = u && yt(u);
-      if (id) return '<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '" title="' + esc(n.videoData.title || 'Video') + '" allowfullscreen loading="lazy"></iframe></div>';
-      if (v?.src?.id) return '<div class="vid"><video controls preload="metadata" src="https://video.wixstatic.com/video/' + esc(v.src.id) + '/file"></video></div>';
-      return u ? '<p><a href="' + esc(u) + '" target="_blank" rel="noopener">Watch the video ↗</a></p>' : '';
-    }
-    case 'LAYOUT': {
-      const u = media(n.layoutData?.backdropImage?.media?.src);
-      return u ? '<figure class="banner"><img src="' + esc(u) + '" alt=""><figcaption>' + kids(n).replace(/<\/?p>/g, '') + '</figcaption></figure>' : kids(n);
-    }
-    default: return kids(n);
-  }
+const yt = u => { const m = String(u).match(/^https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/); return m ? m[1] : null; };
+const md = new Marked({
+  renderer: {
+    // ![alt](src "caption") -> a figure with its caption
+    image({ href, title, text }) {
+      return `<figure><img loading="lazy" src="${esc(href)}" alt="${esc(text)}">${title ? `<figcaption>${esc(title)}</figcaption>` : ''}</figure>`;
+    },
+    // A paragraph that is only a picture stays a figure, not a figure inside <p>;
+    // a paragraph that is only a YouTube address becomes the video.
+    paragraph(token) {
+      const t = token.tokens || [];
+      if (t.length === 1 && t[0].type === 'image') return this.parser.parseInline(t) + '\n';
+      const id = yt(token.text.trim()) && token.text.trim() === token.text.trim().split(/\s/)[0] && yt(token.text.trim());
+      if (id) return `<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="Video" allowfullscreen loading="lazy"></iframe></div>\n`;
+      return `<p>${this.parser.parseInline(t)}</p>\n`;
+    },
+    link({ href, title, tokens }) {
+      const ext = /^https?:\/\//.test(href) && !href.startsWith(SITE);
+      return `<a href="${esc(href)}"${title ? ` title="${esc(title)}"` : ''}${ext ? ' target="_blank" rel="noopener"' : ''}>${this.parser.parseInline(tokens)}</a>`;
+    },
+  },
+});
+
+function readPosts() {
+  if (!fs.existsSync(POSTS_DIR)) return [];
+  return fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md')).map(f => {
+    const [d, body] = frontMatter(fs.readFileSync(path.join(POSTS_DIR, f), 'utf8'));
+    const slug = String(d.slug || f.replace(/\.md$/, '')).trim();
+    const words = strip(body).split(' ').length;
+    return {
+      slug, title: d.title || slug, draft: d.draft === true,
+      date: d.date ? new Date(d.date).toISOString() : new Date(0).toISOString(),
+      updated: d.updated ? new Date(d.updated).toISOString() : '',
+      excerpt: d.excerpt || clip(md.parse(body), 200),
+      cover: d.cover || '', topics: Array.isArray(d.topics) ? d.topics : d.topics ? [d.topics] : [],
+      minutes: Number(d.minutes) || Math.max(1, Math.round(words / 200)),
+      body: body.trim(),
+    };
+  }).filter(p => !p.draft).sort((a, b) => b.date.localeCompare(a.date));
 }
 
 // ---------- Template ----------
@@ -142,14 +173,16 @@ function write(p, html) {
 }
 
 // ---------- Posts ----------
-let posts;
-try { posts = await fetchPosts(); fs.writeFileSync(CACHE, JSON.stringify(posts)); console.log('Fetched', posts.length, 'posts from Wix'); }
-catch (e) { console.warn('Wix not reachable (' + e.message + '); using cache'); posts = fs.existsSync(CACHE) ? JSON.parse(fs.readFileSync(CACHE, 'utf8')) : []; }
-
-const coverOf = p => p.media?.wixMedia?.image?.url || p.media?.embedMedia?.thumbnail?.url || '';
-const ogImg = p => { const c = coverOf(p); return c.startsWith('https://static.wixstatic.com/media/') ? c + '/v1/fill/w_1200,h_630,al_c,q_85/share.jpg' : c || '/img/niche.jpg'; };
-const thumb = u => u && u.startsWith('https://static.wixstatic.com') ? u + '/v1/fill/w_720,h_480,al_c,q_80/cover.jpg' : u;
-const card = p => `<article class="card">${coverOf(p) ? `<img loading="lazy" src="${esc(thumb(coverOf(p)))}" alt="${esc(p.title)}">` : ''}<div class="b"><span class="meta">${esc(fmt(p.firstPublishedDate))}</span><h3>${esc(p.title)}</h3><p>${esc(clip(p.excerpt, 180))}</p><a class="more" href="/journal/${esc(p.slug)}/">Read more →</a></div></article>`;
+const posts = readPosts();
+const ogImg = p => p.cover || '/img/niche.jpg';
+const card = p => `<article class="card">${p.cover ? `<img loading="lazy" src="${esc(p.cover)}" alt="${esc(p.title)}">` : ''}<div class="b"><span class="meta">${esc(fmt(p.date))}</span><h3>${esc(p.title)}</h3><p>${esc(clip(p.excerpt, 180))}</p><a class="more" href="/journal/${esc(p.slug)}/">Read more →</a></div></article>`;
+const feed = key => {
+  const f = FEEDS[key]; if (!f) return '';
+  const list = posts.filter(p => !f.topic || p.topics.includes(f.topic)).slice(0, 3);
+  const all = f.topic ? `/topics/${f.topic}/` : '/topics/';
+  return `<section class="feed"><h2>${esc(f.title)}</h2><div class="cards">${list.length ? list.map(card).join('') : '<p class="empty">The first stories here are on their way.</p>'}</div><a class="all" href="${all}">All ${esc(f.topic ? f.title.toLowerCase() : 'Journal posts')} →</a></section>`;
+};
+const withFeed = (view, key) => view.replace(/<\/div>\s*$/, feed(key) + '\n</div>');
 
 // ---------- Sections ----------
 for (const [key, s] of Object.entries(SECTIONS)) {
@@ -157,24 +190,20 @@ for (const [key, s] of Object.entries(SECTIONS)) {
   const title = s.title;
   const desc = clip(ledeOf(key) || 'Kaaya is a mud-built campus in Tilwari village, Dehradun, where rural and urban communities meet and learn from each other.');
   const ld = key === 'home' ? [{ '@context': 'https://schema.org', ...ORG }, { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Kaaya', url: SITE }] : { '@context': 'https://schema.org', '@type': 'WebPage', name: h1Of(key), url, isPartOf: SITE, publisher: ORG };
-  write(s.path, page({ key, h: head({ title, desc, url, img: s.img, ld }), view: views[key], share: shareBar(title, url) }));
+  write(s.path, page({ key, h: head({ title, desc, url, img: s.img, ld }), view: withFeed(views[key], key), share: shareBar(title, url) }));
 }
 
 // ---------- Story pages ----------
 for (const p of posts) {
   const url = `${SITE}/journal/${p.slug}/`;
-  const nodes = p.richContent?.nodes || [];
-  const hasBanner = nodes.some(x => x.type === 'LAYOUT');
-  const cover = coverOf(p);
-  const bodyHtml = nodes.length
-    ? `<p class="meta">${esc(fmt(p.firstPublishedDate))}${p.minutesToRead ? ' · ' + p.minutesToRead + ' min read' : ''}</p><h1>${esc(p.title)}</h1>` +
-      (cover && !hasBanner && !cover.includes('ytimg') ? `<figure class="banner"><img src="${esc(cover)}" alt="${esc(p.title)}"></figure>` : '') + nodes.map(node).join('')
-    : `<p class="meta">${esc(fmt(p.firstPublishedDate))}</p><h1>${esc(p.title)}</h1><p>${esc(p.excerpt)}</p>`;
+  const startsWithPicture = /^!\[/.test(p.body);
+  const bodyHtml = `<p class="meta">${esc(fmt(p.date))}${p.minutes ? ' · ' + p.minutes + ' min read' : ''}</p><h1>${esc(p.title)}</h1>` +
+    (p.cover && !startsWithPicture ? `<figure class="banner"><img src="${esc(p.cover)}" alt="${esc(p.title)}"></figure>` : '') + md.parse(p.body);
   const view = views.post.replace('<div class="post-body"><p class="empty">Loading…</p></div>', `<div class="post-body">${bodyHtml}</div>`);
   const desc = clip(p.excerpt);
   const ld = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, description: desc, url, mainEntityOfPage: url, image: abs(ogImg(p)),
-    datePublished: p.firstPublishedDate, dateModified: p.lastPublishedDate || p.firstPublishedDate, author: ORG, publisher: ORG };
-  write(`/journal/${p.slug}/`, page({ key: 'post', arg: p.slug, prerendered: nodes.length > 0,
+    datePublished: p.date, dateModified: p.updated || p.date, author: ORG, publisher: ORG };
+  write(`/journal/${p.slug}/`, page({ key: 'post', arg: p.slug, prerendered: true,
     h: head({ title: p.title + ' · Kaaya Journal', desc, url, img: ogImg(p), type: 'article', ld }), view, share: shareBar(p.title, url) }));
 }
 
@@ -184,17 +213,17 @@ const topicPage = (slug, t, list) => {
   const title = (t ? t.title : 'All stories') + ' · Kaaya Journal';
   const desc = t ? `${t.title}: stories from the Kaaya campus and the villages around Tilwari, Dehradun.` : 'All stories from the Kaaya Journal: notes from the campus and the village, shared as they happen.';
   const view = views.blog.replace('<h1 class="blog-title">All stories</h1>', `<h1 class="blog-title">${esc(t ? t.title : 'All stories')}</h1>`)
-    .replace('<div class="cards"></div>', `<div class="cards">${list.map(card).join('')}</div>`);
+    .replace('<div class="cards"></div>', `<div class="cards">${list.length ? list.map(card).join('') : '<p class="empty">The first stories here are on their way.</p>'}</div>`);
   write(url.replace(SITE, ''), page({ key: 'blog', arg: slug, h: head({ title, desc, url, img: list[0] ? ogImg(list[0]) : '/img/niche.jpg', ld: { '@context': 'https://schema.org', '@type': 'CollectionPage', name: title, url } }), view, share: shareBar(title, url) }));
 };
 topicPage('', null, posts);
-for (const [slug, t] of Object.entries(TOPICS)) topicPage(slug, t, posts.filter(p => (p.categoryIds || []).includes(t.cat)));
+for (const [slug, t] of Object.entries(TOPICS)) topicPage(slug, t, posts.filter(p => p.topics.includes(slug)));
 
-// ---------- 404 (also renders brand-new stories before the next build) ----------
-write('/404.html', page({ key: 'post', h: head({ title: 'Kaaya', desc: 'Kaaya is a mud-built campus in Tilwari village, Dehradun.', url: SITE + '/', img: '/img/niche.jpg' }).replace('<link rel="canonical"', '<meta name="robots" content="noindex"><link rel="canonical"'), view: views.post, share: shareBar('Kaaya', SITE + '/') }));
+// ---------- 404 ----------
+write('/404.html', page({ key: 'post', h: head({ title: 'Page not found · Kaaya', desc: 'Kaaya is a mud-built campus in Tilwari village, Dehradun.', url: SITE + '/', img: '/img/niche.jpg' }).replace('<link rel="canonical"', '<meta name="robots" content="noindex"><link rel="canonical"'), view: views.post, share: '' }));
 
 // ---------- sitemap + robots ----------
-const lastmod = Object.fromEntries(posts.map(p => [`/journal/${p.slug}/`, (p.lastPublishedDate || p.firstPublishedDate || '').slice(0, 10)]));
+const lastmod = Object.fromEntries(posts.map(p => [`/journal/${p.slug}/`, (p.updated || p.date).slice(0, 10)]));
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   out.filter(p => p.endsWith('/')).map(p => `  <url><loc>${SITE}${p}</loc>${lastmod[p] ? `<lastmod>${lastmod[p]}</lastmod>` : ''}</url>`).join('\n') + '\n</urlset>\n');
 fs.writeFileSync(path.join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
