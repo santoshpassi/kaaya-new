@@ -207,6 +207,17 @@ for (const p of posts) {
     h: head({ title: p.title + ' · Kaaya Journal', desc, url, img: ogImg(p), type: 'article', ld }), view, share: shareBar(p.title, url) }));
 }
 
+// Remove the pages of stories that were deleted or turned back into drafts.
+const live = new Set(posts.map(p => p.slug));
+for (const d of fs.readdirSync(path.join(ROOT, 'journal'), { withFileTypes: true })) {
+  if (!d.isDirectory() || live.has(d.name)) continue;
+  const f = path.join(ROOT, 'journal', d.name, 'index.html');
+  if (fs.existsSync(f) && fs.readFileSync(f, 'utf8').includes('<body data-page="post"')) {
+    fs.rmSync(path.join(ROOT, 'journal', d.name), { recursive: true });
+    console.log('Removed old story page /journal/' + d.name + '/');
+  }
+}
+
 // ---------- Topic pages ----------
 const topicPage = (slug, t, list) => {
   const url = SITE + '/topics/' + (slug ? slug + '/' : '');
