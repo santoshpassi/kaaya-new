@@ -1,14 +1,12 @@
 name: Build kaaya.org
 
-# Rebuilds every page from src/template.html and the Wix Blog:
-# when the template or build script changes, every morning, or on demand
-# (Actions tab → Build kaaya.org → Run workflow).
+# Rebuilds every page from src/template.html and the Journal stories in content/journal/:
+# whenever the template, the build script, a story or a story picture changes (including
+# saves from the editor at /admin), or on demand (Actions tab → Build kaaya.org → Run workflow).
 on:
   push:
     branches: [main]
-    paths: ['src/**', 'build/build.mjs', '.github/workflows/build.yml']
-  schedule:
-    - cron: '17 0 * * *'   # 05:47 in India, daily
+    paths: ['src/**', 'build/**', 'content/**', 'img/journal/**', '.github/workflows/build.yml']
   workflow_dispatch:
 
 permissions:

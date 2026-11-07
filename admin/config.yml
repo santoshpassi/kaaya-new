@@ -1,0 +1,61 @@
+# Editor for the Kaaya Journal. Open https://kaaya.org/admin/ and sign in with a GitHub access token
+# that can read and write santoshpassi/kaaya-new. Saving a story commits it to the main branch,
+# which rebuilds and publishes kaaya.org within a few minutes.
+backend:
+  name: github
+  repo: santoshpassi/kaaya-new
+  branch: main
+  commit_messages:
+    create: 'Journal: add "{{slug}}"'
+    update: 'Journal: update "{{slug}}"'
+    delete: 'Journal: remove "{{slug}}"'
+    uploadMedia: 'Journal: upload "{{path}}"'
+    deleteMedia: 'Journal: delete "{{path}}"'
+
+site_url: https://kaaya.org
+display_url: https://kaaya.org
+logo_url: /img/kaaya-mark.png
+
+media_folder: img/journal/uploads
+public_folder: /img/journal/uploads
+
+collections:
+  - name: journal
+    label: Journal
+    label_singular: Story
+    description: Stories for the Kaaya Journal. Each one gets its own page at kaaya.org/journal/<address>/.
+    folder: content/journal
+    create: true
+    extension: md
+    format: frontmatter
+    slug: '{{slug}}'
+    media_folder: /img/journal/{{slug}}
+    public_folder: /img/journal/{{slug}}
+    summary: '{{title}} · {{date | date("D MMM YYYY")}}'
+    sortable_fields: [date, title]
+    view_filters:
+      - { label: Drafts, field: draft, pattern: true }
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Published on, widget: datetime, hint: 'Stories are listed newest first.' }
+      - { name: excerpt, label: Short summary, widget: text, hint: 'One or two sentences shown on the story cards and in share previews.' }
+      - { name: cover, label: Cover picture, widget: image, required: false, hint: 'Shown on the story cards and at the top of the story.' }
+      - name: topics
+        label: Topics
+        widget: select
+        multiple: true
+        required: false
+        hint: 'Decides which pages list the story at their foot.'
+        options:
+          - { label: 'Origins (The idea)', value: origins }
+          - { label: 'Neighbourhoods (Community and climate)', value: neighbourhoods }
+          - { label: 'Field Notes (Fellowships)', value: field-notes }
+          - { label: 'Learning Journeys (Learning Centre)', value: learning-journeys }
+          - { label: 'Reflections (The model)', value: reflections }
+      - { name: draft, label: Draft (keep off the site), widget: boolean, default: false, required: false }
+      - { name: updated, label: Last updated, widget: datetime, required: false }
+      - { name: minutes, label: Minutes to read, widget: number, required: false, value_type: int, hint: 'Leave empty to work it out from the length.' }
+      - name: body
+        label: Story
+        widget: markdown
+        hint: 'To show a YouTube video, paste its address on a line of its own. A picture''s title becomes its caption.'
