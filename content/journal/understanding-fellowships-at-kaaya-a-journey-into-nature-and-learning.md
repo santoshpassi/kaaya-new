@@ -1,10 +1,11 @@
 ---
-title: "Understanding Fellowships at kaaya: A Journey into Nature and Learning"
-date: "2026-05-08T11:37:19.049Z"
-updated: "2026-05-08T11:37:19.049Z"
-excerpt: "When I first heard about the Kaaya Fellowships, I was drawn by the promise of a unique experience - one that blends learning with nature, community, and slow living. These fellowships offer more than just a program; they open a door to a world where the earth beneath your feet and the sky above become your classroom. Today, I want to share what I’ve discovered about these fellowships and why they might just be the perfect invitation for youth seeking nature-based experiences. What Are Kaaya..."
-cover: "/img/journal/understanding-fellowships-at-kaaya-a-journey-into-nature-and-learning/cover.png"
+title: 'Understanding Fellowships at kaaya: A Journey into Nature and Learning'
+date: 2026-05-08T11:37:19.049Z
+excerpt: When I first heard about the Kaaya Fellowships, I was drawn by the promise of a unique experience - one that blends learning with nature, community, and slow living. These fellowships offer more than just a program; they open a door to a world where the earth beneath your feet and the sky above become your classroom. Today, I want to share what I’ve discovered about these fellowships and why they might just be the perfect invitation for youth seeking nature-based experiences. What Are Kaaya...
+cover: /img/journal/understanding-fellowships-at-kaaya-a-journey-into-nature-and-learning/33751406_892734980921256_101425334867460096_n.jpg
 topics: []
+draft: false
+updated: 2026-05-08T11:37:19.049Z
 minutes: 3
 ---
 
