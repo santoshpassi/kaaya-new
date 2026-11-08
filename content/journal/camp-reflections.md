@@ -1,10 +1,12 @@
 ---
-title: "Camp Reflections"
-date: "2023-06-06T12:59:02Z"
-updated: "2023-06-06T12:59:02Z"
-excerpt: "The outcome of this summer camp program should also interest parents, as it shows that participating in such a camp is more than just sending their kids to digitally detox, have fun and adventure. It is also an opportunity for them to develop social skills, emotional intelligence and self-confidence that will help them in their personal and academic lives"
-cover: ""
-topics: ["learning-journeys"]
+title: Camp Reflections
+date: 2023-06-06T12:59:02Z
+excerpt: The outcome of this summer camp program should also interest parents, as it shows that participating in such a camp is more than just sending their kids to digitally detox, have fun and adventure. It is also an opportunity for them to develop social skills, emotional intelligence and self-confidence that will help them in their personal and academic lives
+cover: /img/journal/camp-reflections/482303841_2881181995409868_8779674187741087832_n.jpg
+topics:
+  - learning-journeys
+draft: false
+updated: 2023-06-06T12:59:02Z
 minutes: 2
 ---
 
