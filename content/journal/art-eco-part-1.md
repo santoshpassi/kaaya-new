@@ -1,9 +1,12 @@
 ---
-title: "Art-Eco: Part 1"
-date: "2019-12-20T06:45:00Z"
-updated: "2019-12-20T06:45:00Z"
-excerpt: "Art-Eco 2019-20: A socio culture Project (14-20 Dec) Today we conclude a week-long journey of international plein air artists at Kaaya. Plein air painting is about leaving the four walls of your studio behind to experience painting and drawing in the open air. Particularly in this time, when climate as well as humanitarian crisis is looming large, these artists left  comforts of their homes or studios and picked up their brushes, paints and easels to inspire as well as seek inspirations from..."
-topics: ["field-notes"]
+title: 'Art-Eco: Part 1'
+date: 2019-12-20T06:45:00Z
+excerpt: 'Art-Eco 2019-20: A socio culture Project (14-20 Dec) Today we conclude a week-long journey of international plein air artists at Kaaya. Plein air painting is about leaving the four walls of your studio behind to experience painting and drawing in the open air. Particularly in this time, when climate as well as humanitarian crisis is looming large, these artists left  comforts of their homes or studios and picked up their brushes, paints and easels to inspire as well as seek inspirations from...'
+cover: /img/journal/art-eco-part-1/80566129_1386961251498624_6665261529350275072_n.jpg
+topics:
+  - field-notes
+draft: false
+updated: 2019-12-20T06:45:00Z
 minutes: 5
 ---
 
