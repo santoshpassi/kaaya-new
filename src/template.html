@@ -209,6 +209,41 @@ nav.main{margin-left:auto}
   .theme-btn{margin-left:auto;margin-right:.5rem}
   .menu-btn{order:4}
 }
+
+/* Value exchange model */
+.vx{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:2rem;align-items:center;margin-top:1rem}
+.vx svg{width:100%;height:auto;display:block;overflow:visible}
+.vx .ring{fill:none;stroke:var(--rule);stroke-width:1.5;stroke-dasharray:3 7}
+.vx .path{fill:none;stroke:var(--rule);stroke-width:2;transition:stroke .5s,stroke-width .5s,opacity .5s;opacity:.55}
+.vx .path.on{stroke-width:3.5;opacity:1}
+.vx .node circle{fill:var(--card);stroke:var(--rule);stroke-width:2;transition:stroke .5s}
+.vx .node.on circle{stroke:var(--terra)}
+.vx .node text{fill:var(--ink);font-family:var(--display);font-size:20px;text-anchor:middle}
+.vx .node text.sub{fill:var(--ink-soft);font-family:var(--body);font-size:14px}
+.vx .dot{transition:opacity .4s}
+.vx .centre text{fill:var(--ink-soft);font-family:var(--body);font-size:13px;text-anchor:middle;letter-spacing:.08em;text-transform:uppercase}
+.vx .k-money{stroke:var(--terra);fill:var(--terra)} .vx .k-food{stroke:var(--forest);fill:var(--forest)}
+.vx .k-know{stroke:#B98A2E;fill:#B98A2E} .vx .k-care{stroke:#8A6BA8;fill:#8A6BA8}
+.vx .path.k-money,.vx .path.k-food,.vx .path.k-know,.vx .path.k-care{fill:none}
+.vx-steps{display:flex;flex-direction:column;gap:1rem}
+.vx-cap{min-height:9.5rem}
+.vx-cap .what{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.vx-cap h3{font-family:var(--display);font-weight:400;font-size:1.5rem;line-height:1.25;margin:.3rem 0 .5rem}
+.vx-cap p{margin:0;color:var(--ink-soft)}
+.vx-ctl{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.vx-ctl button{font:inherit;background:transparent;color:var(--ink);border:1px solid var(--rule);border-radius:999px;cursor:pointer}
+.vx-ctl .pp{padding:.3rem .9rem}
+.vx-ctl .d{width:.8rem;height:.8rem;padding:0;border-radius:50%}
+.vx-ctl .d[aria-current="true"]{background:var(--terra);border-color:var(--terra)}
+.vx-key{display:flex;flex-wrap:wrap;gap:.4rem 1rem;font-size:.9rem;color:var(--ink-soft);margin:0;padding:0;list-style:none}
+.vx-key li::before{content:"";display:inline-block;width:.65rem;height:.65rem;border-radius:50%;margin-right:.4rem;background:var(--c)}
+.reimagine{margin-top:3rem;padding:2rem;background:var(--paper-2);border-left:3px solid var(--terra)}
+.reimagine h2{margin-top:0}
+.reimagine .ik{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem 1.5rem;margin:1.2rem 0;padding:0;list-style:none}
+.reimagine .ik li{padding-left:1rem;border-left:2px solid var(--rule)}
+.reimagine .ik b{display:block;font-family:var(--display);font-weight:400;font-size:1.1rem;color:var(--ink)}
+@media (max-width:760px){.vx{grid-template-columns:1fr}.vx-cap{min-height:11rem}.reimagine .ik{grid-template-columns:1fr}.reimagine{padding:1.4rem}}
+@media (prefers-reduced-motion: reduce){.vx .dot{display:none}}
 </style>
 </head>
 <body>
@@ -302,6 +337,36 @@ nav.main{margin-left:auto}
     </div>
   </section>
 
+
+  <section aria-labelledby="vx-h">
+    <h2 id="vx-h">How value moves</h2>
+    <div class="prose"><p>Money is only one of the things that change hands here. Food, knowledge, care and attention move too, and value usually flows both ways, often in forms that are easy to miss.</p></div>
+    <div class="vx" data-vx>
+      <svg viewBox="-40 -20 680 640" role="img" aria-labelledby="vx-t vx-d">
+        <title id="vx-t">How value moves at Kaaya</title>
+        <desc id="vx-d">Four circles: guests, Kaaya Offline, the village, and learners and fellows, with Kaaya at the centre. Guests pay for meals and stays; Kaaya Offline pays wages and fair prices to the village; the village brings food and craft back; villagers teach learners; learners give the villagers appreciation, and the farmer sees his work anew; guests leave with stories and come back.</desc>
+        <circle class="ring" cx="300" cy="300" r="222"/>
+        <path id="vx-p1" class="path k-money" d="M372 108 Q470 150 492 228"/>
+        <path id="vx-p2" class="path k-money" d="M492 372 Q470 450 372 492"/>
+        <path id="vx-p3" class="path k-food"  d="M340 470 Q330 330 470 330"/>
+        <path id="vx-p4" class="path k-know"  d="M228 492 Q130 450 108 372"/>
+        <path id="vx-p5" class="path k-care"  d="M140 350 Q200 470 250 470"/>
+        <path id="vx-p6" class="path k-care"  d="M300 150 L300 450"/>
+        <g class="centre"><image href="/img/kaaya-coin.png" x="262" y="250" width="76" height="76"/><text x="300" y="350">Kaaya</text></g>
+        <g class="node" data-n="guests"><circle cx="300" cy="80" r="74"/><text x="300" y="78">Guests</text><text class="sub" x="300" y="100">from the city</text></g>
+        <g class="node" data-n="offline"><circle cx="520" cy="300" r="74"/><text x="520" y="298">Kaaya Offline</text><text x="520" y="320" class="sub">café, stays, market</text></g>
+        <g class="node" data-n="village"><circle cx="300" cy="520" r="74"/><text x="300" y="518">The village</text><text class="sub" x="300" y="540">farmers and makers</text></g>
+        <g class="node" data-n="learners"><circle cx="80" cy="300" r="74"/><text x="80" y="298">Learners</text><text class="sub" x="80" y="320">and fellows</text></g>
+        <g class="dots"></g>
+      </svg>
+      <div class="vx-steps">
+        <div class="vx-cap" aria-live="polite"><p class="what"></p><h3></h3><p class="say"></p></div>
+        <div class="vx-ctl"><button type="button" class="pp" aria-pressed="false">Pause</button></div>
+        <ul class="vx-key"><li style="--c:var(--terra)">Money</li><li style="--c:var(--forest)">Food and craft</li><li style="--c:#B98A2E">Knowledge</li><li style="--c:#8A6BA8">Appreciation, care, stories</li></ul>
+      </div>
+    </div>
+  </section>
+
   <section aria-labelledby="uses-h">
     <h2 id="uses-h">What the earnings make possible</h2>
     <div class="uses">
@@ -324,6 +389,22 @@ nav.main{margin-left:auto}
       <p>Some guests come back often enough to become part of the place: as members, as patrons, as people who plan events with us.</p>
     </div>
   </section>
+
+  <section class="reimagine" aria-labelledby="re-h">
+    <h2 id="re-h">Back to re-imagining</h2>
+    <div class="prose">
+      <p>We began by saying <a href="/">it's about re-imagining</a>. This is a large part of what we mean: seeing value differently. A farmer's knowledge earns the respect of children from the city, and he sees his own work anew. A meal in the café pays for a community kitchen. A guest's attention gives a potter's craft a new life. Nothing here is only a transaction.</p>
+      <p>Perhaps it is close to what the Japanese call <em>ikigai</em>, the place where four things meet:</p>
+    </div>
+    <ul class="ik">
+      <li><b>What we love</b>the land, mud walls, food grown nearby, slow days</li>
+      <li><b>What we are good at</b>the skills the village has always held</li>
+      <li><b>What the world needs</b>places where city and village learn from each other</li>
+      <li><b>What sustains us</b>a café, stays and a market that pay their way</li>
+    </ul>
+    <div class="prose"><p>When these overlap, work stops being a trade-off between earning and meaning. We are still finding out how far that can go.</p></div>
+  </section>
+
 </div>
 
 <!-- THE IDEA -->
@@ -615,5 +696,47 @@ nav.main{margin-left:auto}
 })();
 </script>
 
+
+<script>
+(function(){
+  const box = document.querySelector('[data-vx]'); if (!box) return;
+  const S = [
+    { p:1, from:'guests', to:'offline', k:'money', what:'Money', h:'Guests pay for a meal, a stay, an evening', t:'People from the city come to the café, stay the night, join a happening. What they pay keeps Kaaya Offline going.' },
+    { p:2, from:'offline', to:'village', k:'money', what:'Money', h:'That income becomes wages and fair prices', t:'Salaries for a team from the village, honorariums for volunteers, and market rates paid on the spot for what farmers grow.' },
+    { p:3, from:'village', to:'offline', k:'food', what:'Food and craft', h:'The village brings back food and skill', t:'Vegetables from the kitchen gardens on the café plates, pickles and craft in the Mart, cooking and care by the women of the village.' },
+    { p:4, from:'village', to:'learners', k:'know', what:'Knowledge', h:'Farmers and makers become teachers', t:'Children and students learn seed, soil, cattle and clay in the fields, from the people who practise them every day.' },
+    { p:5, from:'learners', to:'village', k:'care', what:'Appreciation', h:'And the teacher learns something too', t:'A farmer explaining how food is grown receives the attention of children who want to know. He sees that his work matters. It is no longer just the daily grind, and he begins to see his own farm differently.' },
+    { p:6, from:'guests', to:'village', k:'care', what:'Stories', h:'Guests leave with stories, and come back', t:'A village once seen as left behind is seen as a place to learn from. Some guests return as members, patrons, partners.' }
+  ];
+  const svg = box.querySelector('svg'), dots = svg.querySelector('.dots'), NS = 'http://www.w3.org/2000/svg';
+  const cap = box.querySelector('.vx-cap'), ctl = box.querySelector('.vx-ctl'), pp = ctl.querySelector('.pp');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  S.forEach((st, i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'd'; b.setAttribute('aria-label', 'Step ' + (i + 1) + ': ' + st.h); b.onclick = () => { go(i); stop(); }; ctl.appendChild(b); });
+  const ds = ctl.querySelectorAll('.d');
+  let cur = 0, timer = null, raf = null, playing = !reduce;
+  function go(i){
+    cur = (i + S.length) % S.length; const st = S[cur];
+    svg.querySelectorAll('.path').forEach(p => p.classList.toggle('on', p.id === 'vx-p' + st.p));
+    svg.querySelectorAll('.node').forEach(n => n.classList.toggle('on', n.dataset.n === st.from || n.dataset.n === st.to));
+    cap.querySelector('.what').textContent = st.what; cap.querySelector('.what').style.color = getComputedStyle(svg.querySelector('#vx-p' + st.p)).stroke;
+    cap.querySelector('h3').textContent = st.h; cap.querySelector('.say').textContent = st.t;
+    ds.forEach((d, j) => d.setAttribute('aria-current', j === cur ? 'true' : 'false'));
+    flow(st);
+  }
+  function flow(st){
+    cancelAnimationFrame(raf); dots.innerHTML = ''; if (reduce) return;
+    const path = svg.querySelector('#vx-p' + st.p), L = path.getTotalLength(), n = 5, els = [];
+    for (let i = 0; i < n; i++) { const c = document.createElementNS(NS, 'circle'); c.setAttribute('r', st.k === 'money' ? 7 : 6); c.setAttribute('class', 'dot k-' + st.k); dots.appendChild(c); els.push(c); }
+    const t0 = performance.now();
+    (function tick(t){ const f = ((t - t0) / 2600); els.forEach((c, i) => { const x = (f + i / n) % 1; const pt = path.getPointAtLength(x * L); c.setAttribute('cx', pt.x); c.setAttribute('cy', pt.y); c.style.opacity = Math.sin(Math.PI * x).toFixed(2); }); raf = requestAnimationFrame(tick); })(t0);
+  }
+  function play(){ clearInterval(timer); timer = setInterval(() => go(cur + 1), 6000); playing = true; pp.textContent = 'Pause'; pp.setAttribute('aria-pressed', 'false'); }
+  function stop(){ clearInterval(timer); playing = false; pp.textContent = 'Play'; pp.setAttribute('aria-pressed', 'true'); }
+  pp.onclick = () => playing ? stop() : play();
+  go(0);
+  if (playing && 'IntersectionObserver' in window) new IntersectionObserver(e => { if (e[0].isIntersecting && playing) play(); else clearInterval(timer); }).observe(box);
+  else if (!playing) stop();
+})();
+</script>
 </body>
 </html>
