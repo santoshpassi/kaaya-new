@@ -1,10 +1,12 @@
 ---
-title: "When the Farmer Became the Teacher"
-date: "2026-11-06T02:57:32Z"
-updated: "2026-11-06T06:53:53.693Z"
+title: When the Farmer Became the Teacher
+date: 2026-11-06T02:57:32Z
 excerpt: "Kaaya began with an admission: we didn't know much. We came to the village wanting to grow food, keep cattle and save seed, and soon found that none of it could be learned from a screen. How to choose the best seed. What a cow eats in which season. Which plant to give her when she falls ill. This knowledge lives with the people who practise it every day, passed down through generations and kept alive by doing. So we stepped aside and let the village teach. The seed journey Children followed a..."
-cover: ""
-topics: ["learning-journeys"]
+cover: /img/journal/when-the-farmer-became-the-teacher/502434665_2963405017187565_8555955609572652263_n.jpg
+topics:
+  - learning-journeys
+draft: false
+updated: 2026-11-06T06:53:53.693Z
 minutes: 1
 ---
 
