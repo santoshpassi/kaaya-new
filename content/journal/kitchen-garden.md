@@ -1,10 +1,11 @@
 ---
-title: "Kaaya's Unique Organic Kitchen Garden Initiative"
-date: "2026-06-24T06:43:50Z"
-updated: "2026-11-06T02:48:26.182Z"
-excerpt: "Growing Together: A Journey Towards Sustainability In case you have recently missed Kaaya updates, we have been busy learning to grow organic. As part of our urban-rural connect program, Kaaya is excited to share a unique organic kitchen garden initiative in the neighborhood! The Challenges of Farming As you may know, the incentive to farm is declining, especially for small farmers. The challenges are many. From the monkey menace to unpredictable monsoons, the risks are high. The returns on..."
-cover: "/img/journal/kitchen-garden/cover.png"
+title: Kaaya's Organic Kitchen Garden Initiative
+date: 2026-06-24T06:43:50Z
+excerpt: 'Growing Together: A Journey Towards Sustainability In case you have recently missed Kaaya updates, we have been busy learning to grow organic. As part of our urban-rural connect program, Kaaya is excited to share a unique organic kitchen garden initiative in the neighborhood! The Challenges of Farming As you may know, the incentive to farm is declining, especially for small farmers. The challenges are many. From the monkey menace to unpredictable monsoons, the risks are high. The returns on...'
+cover: /img/journal/kitchen-garden/cover.png
 topics: []
+draft: true
+updated: 2026-11-06T02:48:26.182Z
 minutes: 3
 ---
 
