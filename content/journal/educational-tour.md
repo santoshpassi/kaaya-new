@@ -1,10 +1,12 @@
 ---
-title: "Educational Tour"
-date: "2022-11-02T02:11:02Z"
-updated: "2026-11-05T17:11:39.669Z"
-excerpt: "Plan a field trip for students In class rooms, students engage with different aspects of pressing global issues related to environment, climate change or sustainability covered in their syllabus. When they visit Kaaya, they have already studied, debated, presented on, and written research papers about them. At Kaaya, they get the field context to link them all together. We facilitate a proactive engagement of students with local environment where nature and communities co-exist; and how such..."
-cover: ""
-topics: ["learning-journeys"]
+title: Educational Tour
+date: 2022-11-02T02:11:02Z
+excerpt: Plan a field trip for students In class rooms, students engage with different aspects of pressing global issues related to environment, climate change or sustainability covered in their syllabus. When they visit Kaaya, they have already studied, debated, presented on, and written research papers about them. At Kaaya, they get the field context to link them all together. We facilitate a proactive engagement of students with local environment where nature and communities co-exist; and how such...
+cover: /img/journal/educational-tour/43408810_1021594811368605_9158790894252457984_n.jpg
+topics:
+  - learning-journeys
+draft: false
+updated: 2026-11-05T17:11:39.669Z
 minutes: 2
 ---
 
