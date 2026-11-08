@@ -1,10 +1,12 @@
 ---
-title: "If Everyone Is a Social Enterprise, What Does the Term Actually Mean?"
-date: "2026-06-24T18:26:37.206Z"
-updated: "2026-06-24T18:26:37.206Z"
-excerpt: "The Future of Changemaking? A Discussion with Santosh Passi By Zahara Czar, Intern at Kaaya Learning Center, May-June 2026 Third Year International Relations Student at the University of British Columbia A decade ago, the development sector spoke the language of NGOs, charities, and philanthropy. Today, a new term dominates the conversation: social entrepreneurship. Businesses are social enterprises. NGOs are social enterprises. Startups are social enterprises. Everyone seems to be creating..."
-cover: "/img/journal/if-everyone-is-a-social-enterprise-what-does-the-term-actually-mean/cover.jpg"
-topics: ["reflections"]
+title: If Everyone Is a Social Enterprise, What Does the Term Actually Mean?
+date: 2026-06-24T18:26:37.206Z
+excerpt: 'The Future of Changemaking? A Discussion with Santosh Passi By Zahara Czar, Intern at Kaaya Learning Center, May-June 2026 Third Year International Relations Student at the University of British Columbia A decade ago, the development sector spoke the language of NGOs, charities, and philanthropy. Today, a new term dominates the conversation: social entrepreneurship. Businesses are social enterprises. NGOs are social enterprises. Startups are social enterprises. Everyone seems to be creating...'
+cover: /img/journal/if-everyone-is-a-social-enterprise-what-does-the-term-actually-mean/33747809_892735014254586_8833105229298794496_n.jpg
+topics:
+  - reflections
+draft: false
+updated: 2026-06-24T18:26:37.206Z
 minutes: 3
 ---
 
