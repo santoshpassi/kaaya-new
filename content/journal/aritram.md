@@ -1,10 +1,11 @@
 ---
-title: "Aritram"
-date: "2026-04-30T06:37:40.743Z"
-updated: "2026-04-30T06:37:40.743Z"
-excerpt: "Aritram (अरित्रम्) An Immersive Volunteering Program Overview Aritram, a Sanskrit word meaning an oar used for steering a boat, is an invitation to co-create. Set in a village ecosystem of Tilwari (near Dehradun, Uttarakhand) where food, farming, community, and creativity intersect, the volunteering program brings together individuals from diverse backgrounds to participate in building experiences that are rooted, regenerative, and humane. Volunteers become active collaborators across..."
-cover: ""
+title: Aritram
+date: 2026-04-30T06:37:40.743Z
+excerpt: Aritram (अरित्रम्) An Immersive Volunteering Program Overview Aritram, a Sanskrit word meaning an oar used for steering a boat, is an invitation to co-create. Set in a village ecosystem of Tilwari (near Dehradun, Uttarakhand) where food, farming, community, and creativity intersect, the volunteering program brings together individuals from diverse backgrounds to participate in building experiences that are rooted, regenerative, and humane. Volunteers become active collaborators across...
+cover: ''
 topics: []
+draft: true
+updated: 2026-04-30T06:37:40.743Z
 minutes: 3
 ---
 
