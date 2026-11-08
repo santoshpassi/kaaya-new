@@ -1,10 +1,12 @@
 ---
-title: "Building Kaaya, Building Community: The 2013 Kedarnath Tragedy"
-date: "2026-11-06T02:56:39Z"
-updated: "2026-11-06T06:26:04.546Z"
-excerpt: "In June 2013, the monsoon brought a calamity to the Kedar valley that took thousands of lives. It called for a humanitarian response unlike anything these mountains had seen. Kaaya was very young then: a few mud buildings in Tilwari, still being built. The roots of Kaaya lie in Rudraprayag district, where Himvikas, the organisation Kaaya grew out of, was based. Those were our own valleys and our own people. We, at Tilwari, could not stay apart from it, and we were among the few who were able..."
-cover: ""
-topics: ["origins"]
+title: 'Building Kaaya, Building Community: The 2013 Kedarnath Tragedy'
+date: 2026-11-06T02:56:39Z
+excerpt: 'In June 2013, the monsoon brought a calamity to the Kedar valley that took thousands of lives. It called for a humanitarian response unlike anything these mountains had seen. Kaaya was very young then: a few mud buildings in Tilwari, still being built. The roots of Kaaya lie in Rudraprayag district, where Himvikas, the organisation Kaaya grew out of, was based. Those were our own valleys and our own people. We, at Tilwari, could not stay apart from it, and we were among the few who were able...'
+cover: /img/journal/building-kaaya-building-community-the-2013-kedarnath-tragedy/502629130_2963406333854100_1380022554641700925_n.jpg
+topics:
+  - origins
+draft: false
+updated: 2026-11-06T06:26:04.546Z
 minutes: 2
 ---
 
