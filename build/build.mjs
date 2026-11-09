@@ -17,7 +17,7 @@ const SECTIONS = {
   fellowships: { path: '/fellowships/',            img: '/img/padav-2.jpg',      title: 'Fellowships · Kaaya, Tilwari' },
   learning:    { path: '/learning-centre/',        img: '/img/lc-plough.jpg',    title: 'Learning Centre · Kaaya, Tilwari, Dehradun' },
   journal:     { path: '/journal/',                img: '/img/niche.jpg',        title: 'Journal · Kaaya' },
-  model:       { path: '/the-model/',              img: '/img/team.jpg',         title: 'The model · Kaaya' },
+  model:       { path: '/the-model/',              img: '/img/team.jpg',         title: "Kaaya's Rural-Urban Connect Model" },
 };
 const TOPICS = {
   'origins':           { title: 'Origins' },

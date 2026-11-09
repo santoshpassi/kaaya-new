@@ -224,6 +224,39 @@ nav.main{margin-left:auto}
   .theme-btn{margin-left:auto;margin-right:.5rem}
   .menu-btn{order:4}
 }
+
+/* Value exchange model */
+.vx{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2rem;align-items:center;margin-top:1rem}
+.vx svg{width:100%;height:auto;display:block;overflow:visible}
+.vx .link{opacity:0;transition:opacity .7s;cursor:pointer;outline:none}
+.vx .link.show{opacity:1}
+.vx .link .hit{fill:none;stroke:transparent;stroke-width:26}
+.vx .link .ln{fill:none;stroke-width:2;opacity:.45;transition:opacity .4s,stroke-width .4s}
+.vx .link.on .ln,.vx .link:hover .ln,.vx .link:focus-visible .ln{opacity:1;stroke-width:3}
+.vx .d1{stroke:var(--terra);fill:var(--terra)} .vx .d2{stroke:var(--forest);fill:var(--forest)}
+.vx .node{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.85);transition:opacity .7s,transform .7s}
+.vx .node.show{opacity:1;transform:none}
+.vx .node circle{fill:var(--card);stroke:var(--rule);stroke-width:2;transition:stroke .4s}
+.vx .node.on circle{stroke:var(--terra);stroke-width:2.5}
+.vx .node text{fill:var(--ink);font-family:var(--display);font-size:17px;text-anchor:middle}
+.vx .node text.sub{fill:var(--ink-soft);font-family:var(--body);font-size:12.5px}
+.vx-steps{display:flex;flex-direction:column;gap:1rem}
+.vx-cap{min-height:17rem}
+.vx-cap .what{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--terra);margin:0}
+.vx-cap h3{font-family:var(--display);font-weight:400;font-size:1.45rem;line-height:1.25;margin:.3rem 0 .6rem}
+.vx-cap .say p{margin:0 0 .7rem;color:var(--ink-soft)}
+.vx-cap .arr{display:block;font-weight:700;font-size:.85rem;margin-bottom:.15rem}
+.vx-cap .arr.d1{color:var(--terra)} .vx-cap .arr.d2{color:var(--forest)}
+.vx-ctl{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+.vx-ctl button{font:inherit;background:transparent;color:var(--ink);border:1px solid var(--rule);border-radius:999px;cursor:pointer}
+.vx-ctl .pp{padding:.3rem .9rem}
+.vx-ctl .d{width:.8rem;height:.8rem;padding:0;border-radius:50%}
+.vx-ctl .d[aria-current="true"]{background:var(--terra);border-color:var(--terra)}
+.vx-hint{margin:0;font-size:.88rem;color:var(--ink-soft)}
+.reimagine{margin-top:3rem;padding:2rem;background:var(--paper-2);border-left:3px solid var(--terra)}
+.reimagine h2{margin-top:0}
+@media (max-width:760px){.vx{grid-template-columns:1fr}.vx-cap{min-height:20rem}.reimagine{padding:1.4rem}}
+@media (prefers-reduced-motion: reduce){.vx .node,.vx .link{transition:none}}
 </style>
 </head>
 <body data-page="post" data-arg="camp-reflections" data-prerendered="1">
@@ -312,5 +345,113 @@ nav.main{margin-left:auto}
 })();
 </script>
 
+
+<script>
+(function(){
+  const box = document.querySelector('[data-vx]'); if (!box) return;
+  const N = {
+    kaaya:    { x:230, y:330, t:'A rural enterprise', s:'Kaaya', L:1 },
+    village:  { x:470, y:330, t:'The village', s:'Tilwari', L:1 },
+    guests:   { x:350, y:110, t:'Guests', s:'from the city', L:2 },
+    learners: { x:600, y:150, t:'Learners', s:'students, fellows', L:2 },
+    patrons:  { x:100, y:150, t:'Patrons', s:'the Kaaya community', L:2 },
+    gov:      { x:350, y:545, t:'Government', s:'Setu Aayog · ISVC', L:3 }
+  };
+  const E = [
+    { a:'kaaya', b:'village', L:1, h:'A small enterprise and a village',
+      ab:'An independent platform for community events, a market for local vendors and suppliers, wages and salaries for the local team, honorariums for volunteers, and simply a space where the village, especially its women, can come together.',
+      ba:'Produce from the kitchen gardens, pickles and craft for the Mart, and the cooking and care of the women who run the place.' },
+    { a:'guests', b:'kaaya', L:2, h:'Guests and Kaaya',
+      ab:'They pay for a meal, a stay or an evening. This keeps the café and the stays going.',
+      ba:'They find good food, a slower day, and a place where they are treated as family rather than as customers.' },
+    { a:'guests', b:'village', L:2, h:'Guests and the village',
+      ab:'They buy directly from the community, pay a fair price for its effort, and give the village reason to hope for its future.',
+      ba:'Guests leave with fresh food, a sense of where it comes from, and stories. Some become part of the Kaaya community and keep coming back.' },
+    { a:'village', b:'learners', L:2, h:'The village and learners',
+      ab:'Farmers and community members share what they know of seed, soil, cattle and fieldwork, in the places where they practise it every day.',
+      ba:'Farmers receive the attention of visitors who want to learn, and see that their work matters: not just a daily grind, but something of real value.' },
+    { a:'learners', b:'guests', L:2, h:'Learners and guests',
+      ab:'Art in the gallery, handprints on the walls, stories that linger in conversations and blogs. Guests find a richer tapestry of experience each time they visit.',
+      ba:'Interest, support and return visits help keep the campus running, and make it possible to host more fellows and interns.' },
+    { a:'patrons', b:'kaaya', L:2, h:'Patrons and Kaaya',
+      ab:'Birthdays, family gatherings and guest meets held here; meals at the café rather than in the city, though it means a forty-minute drive. Because they enjoy it, and because they know Kaaya needs the income.',
+      ba:'A place that feels partly their own, and the quiet satisfaction of seeing what they spend become wages, a community kitchen and fellowships.' },
+    { a:'gov', b:'village', also:'kaaya', L:3, h:'Government and the village, through Kaaya',
+      ab:'Through the Setu Aayog smart-village initiative, the ISVC centre at Tilwari brings information, schemes and services closer to people, with a place for children and villagers to meet.',
+      ba:'An anchor already on the ground, trusted by the community, where programmes can take root and be looked after. Looking back, we think this is why Setu Aayog chose to work with us: the relationships were already there.' }
+  ];
+  const LAYER = { 1:'Layer 1 · The core', 2:'Layer 2 · Those who come', 3:'Layer 3 · The frame' };
+  const NS = 'http://www.w3.org/2000/svg', svg = box.querySelector('svg');
+  const gL = svg.querySelector('.links'), gD = svg.querySelector('.dots'), gN = svg.querySelector('.nodes');
+  const cap = box.querySelector('.vx-cap'), ctl = box.querySelector('.vx-ctl'), pp = ctl.querySelector('.pp');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const el = (t, at, p) => { const e = document.createElementNS(NS, t); for (const k in at) e.setAttribute(k, at[k]); (p || svg).appendChild(e); return e; };
+  const R = 64;
+  // two parallel curves per link, one for each direction
+  function curve(A, B, off, via){
+    const dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy), ux = dx / len, uy = dy / len, nx = -uy, ny = ux;
+    const sx = A.x + ux * R + nx * off, sy = A.y + uy * R + ny * off, ex = B.x - ux * R + nx * off, ey = B.y - uy * R + ny * off;
+    let cx = (A.x + B.x) / 2 + nx * (off * 3), cy = (A.y + B.y) / 2 + ny * (off * 3);
+    if (via) { cx = via.x + nx * off * 2; cy = via.y + R + 40 + ny * off; }
+    return `M${sx.toFixed(1)} ${sy.toFixed(1)} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)}`;
+  }
+  E.forEach((e, i) => {
+    const A = N[e.a], B = N[e.b], via = e.via ? N[e.via] : null;
+    const g = el('g', { class: 'link', 'data-i': i, tabindex: 0, role: 'button', 'aria-label': e.h }, gL);
+    el('path', { class: 'hit', d: curve(A, B, 0, via) }, g);
+    e.p1 = el('path', { class: 'ln d1', d: curve(A, B, 7, via) }, g);
+    e.p2 = el('path', { class: 'ln d2', d: curve(B, A, 7, via) }, g);
+    e.ps = [[e.p1, 'd1'], [e.p2, 'd2']];
+    if (e.also) { const C = N[e.also]; el('path', { class: 'hit', d: curve(A, C, 0) }, g);
+      const q1 = el('path', { class: 'ln d1', d: curve(A, C, 7) }, g), q2 = el('path', { class: 'ln d2', d: curve(C, A, 7) }, g); e.ps.push([q1, 'd1'], [q2, 'd2']); }
+    e.g = g;
+    const pick = () => { go(i + 1); stop(); };
+    g.addEventListener('click', pick); g.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); pick(); } });
+  });
+  for (const k in N) {
+    const n = N[k], g = el('g', { class: 'node', 'data-n': k }, gN);
+    el('circle', { cx: n.x, cy: n.y, r: R }, g);
+    el('text', { x: n.x, y: n.y - 2 }, g).textContent = n.t;
+    el('text', { x: n.x, y: n.y + 18, class: 'sub' }, g).textContent = n.s;
+    n.g = g;
+  }
+  // steps: one per link, then the whole picture
+  const S = E.map((e, i) => ({ i, L: e.L })).concat([{ i: -1, L: 3 }]);
+  S.forEach((st, j) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'd'; b.setAttribute('aria-label', st.i < 0 ? 'The whole picture' : E[st.i].h); b.onclick = () => { go(j); stop(); }; ctl.appendChild(b); });
+  const ds = ctl.querySelectorAll('.d');
+  let cur = 0, timer = null, raf = null, playing = !reduce;
+  const name = k => N[k].s === 'Kaaya' ? 'Kaaya' : N[k].t === 'The village' ? 'The village' : N[k].t;
+  function go(j){
+    cur = (j + S.length) % S.length; const st = S[cur], e = st.i >= 0 ? E[st.i] : null;
+    const shownL = e ? e.L : 3, seen = new Set();
+    E.forEach((x, k) => { const vis = reduce || cur === S.length - 1 || k <= st.i; x.g.classList.toggle('show', vis); x.g.classList.toggle('on', k === st.i); if (vis) { seen.add(x.a); seen.add(x.b); if (x.also) seen.add(x.also); } });
+    for (const k in N) { N[k].g.classList.toggle('show', seen.has(k)); N[k].g.classList.toggle('on', !!e && (k === e.a || k === e.b || k === e.also)); }
+    const what = cap.querySelector('.what'), h = cap.querySelector('h3'), say = cap.querySelector('.say');
+    if (e) {
+      what.textContent = LAYER[e.L]; h.textContent = e.h;
+      const nb = e.also ? 'The village and Kaaya' : name(e.b), na = name(e.a);
+      say.innerHTML = `<p><span class="arr d1">${na} → ${e.also ? 'the village, through Kaaya' : nb}</span>${e.ab}</p><p><span class="arr d2">${nb} → ${na}</span>${e.ba}</p>`;
+    } else {
+      what.textContent = 'The whole picture'; h.textContent = 'None of these is new on its own';
+      say.innerHTML = '<p>What is new is how they fit together: every link gives something back, and no single party has to carry the rest.</p>';
+    }
+    ds.forEach((d, k) => d.setAttribute('aria-current', k === cur ? 'true' : 'false'));
+    flow(e);
+  }
+  function flow(e){
+    cancelAnimationFrame(raf); gD.innerHTML = ''; if (reduce) return;
+    const list = e ? [e] : E, items = [];
+    list.forEach(x => x.ps.forEach(([p, c]) => { const L = p.getTotalLength(); for (let i = 0; i < (e ? 4 : 2); i++) items.push({ p, L, c: el('circle', { r: e ? 6 : 4.5, class: 'dot ' + c }, gD), o: i / (e ? 4 : 2) }); }));
+    const t0 = performance.now();
+    (function tick(t){ const f = (t - t0) / 3000; items.forEach(it => { const x = (f + it.o) % 1, pt = it.p.getPointAtLength(x * it.L); it.c.setAttribute('cx', pt.x); it.c.setAttribute('cy', pt.y); it.c.style.opacity = Math.sin(Math.PI * x).toFixed(2); }); raf = requestAnimationFrame(tick); })(t0);
+  }
+  function play(){ clearInterval(timer); timer = setInterval(() => go(cur + 1), 8000); playing = true; pp.textContent = 'Pause'; pp.setAttribute('aria-pressed', 'false'); }
+  function stop(){ clearInterval(timer); playing = false; pp.textContent = 'Play'; pp.setAttribute('aria-pressed', 'true'); }
+  pp.onclick = () => playing ? stop() : play();
+  go(reduce ? S.length - 1 : 0);
+  if (playing && 'IntersectionObserver' in window) new IntersectionObserver(en => { if (en[0].isIntersecting && playing) play(); else clearInterval(timer); }).observe(box);
+  else stop();
+})();
+</script>
 </body>
 </html>
