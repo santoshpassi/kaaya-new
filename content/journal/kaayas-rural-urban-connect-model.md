@@ -1,11 +1,12 @@
 ---
 title: "Kaaya's Rural-Urban Connect Model: How Value Moves Both Ways"
 date: 2026-11-09T06:15:00Z
-excerpt: "Kaaya runs on exchanges that go both ways. Money is one of them, but so are food, knowledge, care, attention and trust. Looking back, we came to see that when each party gains something it values, the arrangement keeps itself going."
-cover: /img/womens-day.jpg
+excerpt: Kaaya runs on exchanges that go both ways. Money is one of them, but so are food, knowledge, care, attention and trust. Looking back, we came to see that when each party gains something it values, the arrangement keeps itself going.
+cover: /img/journal/kaayas-rural-urban-connect-model/488254485_1191384783000745_5713718684691676532_n.jpg
 topics:
   - reflections
 draft: false
+updated: ''
 minutes: 5
 ---
 
