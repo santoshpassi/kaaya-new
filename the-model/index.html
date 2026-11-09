@@ -236,7 +236,7 @@ nav.main{margin-left:auto}
 .vx .d1{stroke:var(--terra);fill:var(--terra)} .vx .d2{stroke:var(--forest);fill:var(--forest)}
 .vx .node{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.85);transition:opacity .7s,transform .7s}
 .vx .node.show{opacity:1;transform:none}
-.vx .node circle{fill:var(--card);stroke:var(--rule);stroke-width:2;transition:stroke .4s}
+.vx .node circle{fill:var(--paper);stroke:var(--rule);stroke-width:2;transition:stroke .4s}
 .vx .node.on circle{stroke:var(--terra);stroke-width:2.5}
 .vx .node text{fill:var(--ink);font-family:var(--display);font-size:17px;text-anchor:middle}
 .vx .node text.sub{fill:var(--ink-soft);font-family:var(--body);font-size:12.5px}
@@ -255,7 +255,18 @@ nav.main{margin-left:auto}
 .vx-hint{margin:0;font-size:.88rem;color:var(--ink-soft)}
 .reimagine{margin-top:3rem;padding:2rem;background:var(--paper-2);border-left:3px solid var(--terra)}
 .reimagine h2{margin-top:0}
-@media (max-width:760px){.vx{grid-template-columns:1fr}.vx-cap{min-height:20rem}.reimagine{padding:1.4rem}}
+.vx{background:var(--card);border:1px solid var(--rule);padding:1.5rem;border-radius:4px}
+@media (max-width:760px){
+  .vx{grid-template-columns:1fr;align-items:stretch;gap:.6rem;padding:.8rem;height:calc(100svh - 5.5rem);max-height:760px;grid-template-rows:auto minmax(0,1fr);scroll-margin-top:4.5rem}
+  .vx svg{width:100%;height:42svh}
+  .vx .node text{font-size:34px}.vx .node text.sub{font-size:23px}
+  .vx-steps{min-height:0;height:100%;gap:.6rem;overflow:hidden}
+  .vx-cap{min-height:0;flex:1 1 0;overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--rule);padding-top:.6rem}
+  .vx-cap h3{font-size:1.2rem;margin:.15rem 0 .4rem}
+  .vx-cap .say p{font-size:.95rem;margin-bottom:.5rem}
+  .vx-hint{display:none}
+  .reimagine{padding:1.4rem}
+}
 @media (prefers-reduced-motion: reduce){.vx .node,.vx .link{transition:none}}
 </style>
 </head>
@@ -411,12 +422,12 @@ nav.main{margin-left:auto}
 (function(){
   const box = document.querySelector('[data-vx]'); if (!box) return;
   const N = {
-    kaaya:    { x:230, y:330, t:'A rural enterprise', s:'Kaaya', L:1 },
-    village:  { x:470, y:330, t:'The village', s:'Tilwari', L:1 },
-    guests:   { x:350, y:110, t:'Guests', s:'from the city', L:2 },
-    learners: { x:600, y:150, t:'Learners', s:'students, fellows', L:2 },
-    patrons:  { x:100, y:150, t:'Patrons', s:'the Kaaya community', L:2 },
-    gov:      { x:350, y:545, t:'Government', s:'Setu Aayog · ISVC', L:3 }
+    kaaya:    { x:230, y:330, t:'A rural enterprise', s:'Kaaya', m:'Kaaya', ms:'enterprise', L:1 },
+    village:  { x:470, y:330, t:'The village', s:'Tilwari', m:'Village', ms:'Tilwari', L:1 },
+    guests:   { x:350, y:110, t:'Guests', s:'from the city', m:'Guests', ms:'from the city', L:2 },
+    learners: { x:600, y:150, t:'Learners', s:'students, fellows', m:'Learners', ms:'students', L:2 },
+    patrons:  { x:100, y:150, t:'Patrons', s:'the Kaaya community', m:'Patrons', ms:'community', L:2 },
+    gov:      { x:350, y:545, t:'Government', s:'Setu Aayog · ISVC', m:'Govt.', ms:'Setu Aayog', L:3 }
   };
   const E = [
     { a:'kaaya', b:'village', L:1, h:'A small enterprise and a village',
@@ -447,7 +458,9 @@ nav.main{margin-left:auto}
   const cap = box.querySelector('.vx-cap'), ctl = box.querySelector('.vx-ctl'), pp = ctl.querySelector('.pp');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const el = (t, at, p) => { const e = document.createElementNS(NS, t); for (const k in at) e.setAttribute(k, at[k]); (p || svg).appendChild(e); return e; };
-  const R = 64;
+  const small = matchMedia('(max-width: 760px)').matches;
+  const R = small ? 82 : 64;
+  if (small) svg.setAttribute('viewBox', '0 20 700 615');
   // two parallel curves per link, one for each direction
   function curve(A, B, off, via){
     const dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy), ux = dx / len, uy = dy / len, nx = -uy, ny = ux;
@@ -472,8 +485,8 @@ nav.main{margin-left:auto}
   for (const k in N) {
     const n = N[k], g = el('g', { class: 'node', 'data-n': k }, gN);
     el('circle', { cx: n.x, cy: n.y, r: R }, g);
-    el('text', { x: n.x, y: n.y - 2 }, g).textContent = n.t;
-    el('text', { x: n.x, y: n.y + 18, class: 'sub' }, g).textContent = n.s;
+    el('text', { x: n.x, y: n.y + (small ? 2 : -2) }, g).textContent = small ? n.m : n.t;
+    el('text', { x: n.x, y: n.y + (small ? 32 : 18), class: 'sub' }, g).textContent = small ? n.ms : n.s;
     n.g = g;
   }
   // steps: one per link, then the whole picture
