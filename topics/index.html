@@ -268,6 +268,76 @@ nav.main{margin-left:auto}
   .reimagine{padding:1.4rem}
 }
 @media (prefers-reduced-motion: reduce){.vx .node,.vx .link{transition:none}}
+
+:root{--flow-money:var(--terra);--flow-value:var(--forest)}
+.sw{width:22px;height:3px;border-radius:2px;display:inline-block;flex:none}
+.sw.k-m{background:var(--flow-money)} .sw.k-v{background:var(--flow-value)}
+.meal button,.who button{font:inherit}
+/* ===== Follow one meal ===== */
+.meal{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2.5rem;align-items:center;margin-top:1.25rem;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:1.5rem}
+.meal-fig{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.meal svg{width:100%;height:auto;display:block;-webkit-tap-highlight-color:transparent}
+.meal .arc{fill:none;stroke-width:3;opacity:.28;transition:opacity .25s ease-out}
+.meal .arc.done{opacity:.75}
+.meal .arc.on{opacity:1;stroke-width:4.5}
+.meal .k-m{stroke:var(--flow-money)} .meal .k-v{stroke:var(--flow-value)}
+.meal .ah-m{fill:var(--flow-money);stroke:none} .meal .ah-v{fill:var(--flow-value);stroke:none}
+.meal .dot{stroke:none;pointer-events:none}
+.meal .dot.k-m{fill:var(--flow-money)} .meal .dot.k-v{fill:var(--flow-value)}
+.meal .stop{cursor:pointer}
+.meal .stop:focus{outline:none}
+.meal .stop circle{fill:var(--paper);stroke:var(--rule-strong);stroke-width:1.5;transition:stroke .2s ease-out}
+.meal .stop:hover circle{stroke:var(--ink-soft)}
+.meal .stop:focus-visible circle{stroke:var(--terra);stroke-width:3}
+.meal .stop.on circle{stroke:var(--ink);stroke-width:3}
+.meal .stop text{fill:var(--ink);font-family:var(--display);font-size:19px;text-anchor:middle;pointer-events:none}
+.meal .stop text.sub{fill:var(--ink-soft);font-family:var(--body);font-size:13.5px}
+.meal .stop text.num{fill:var(--ink-soft);font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.08em}
+.meal .mid{font-family:var(--display);text-anchor:middle;fill:var(--ink)}
+.meal .mid.big{font-size:30px;font-style:italic;font-weight:300}
+.meal .mid.small{font-family:var(--body);font-size:14px;fill:var(--ink-soft)}
+.key{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.5rem;font-size:.88rem;color:var(--ink-soft)}
+.key li{display:flex;align-items:center;gap:.5rem}
+.meal-side{display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.meal-cap{display:flex;flex-direction:column;gap:.6rem;min-height:13.5rem}
+.meal-cap .what{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink-soft)}
+.meal-cap h3{font-size:1.6rem;line-height:1.2}
+.meal-cap .txt{color:var(--ink-soft)}
+.meal-cap .on-move{display:flex;align-items:center;gap:.55rem;font-weight:500;font-size:.95rem;color:var(--ink);padding-top:.6rem;border-top:1px solid var(--rule)}
+.shot,.who-pic{margin:0}
+.shot img,.who-pic img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:2px;outline:1px solid color-mix(in srgb,var(--ink) 12%,transparent);outline-offset:-1px}
+.meal-nav{display:flex;gap:.5rem;align-items:center}
+.meal-nav button{cursor:pointer;color:var(--ink);background:transparent;border:1px solid var(--rule-strong);border-radius:999px;padding:.45rem 1.1rem;min-height:44px;transition:border-color .15s ease-out,color .15s ease-out}
+.meal-nav button:hover{border-color:var(--terra);color:var(--terra)}
+.meal-nav .next{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.meal-nav .next:hover{background:var(--terra);border-color:var(--terra);color:var(--paper)}
+.meal-after{margin-top:1.25rem;font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(1.2rem,2.4vw,1.5rem);line-height:1.45;max-width:44ch;border-left:2px solid var(--terra);padding-left:1.1rem}
+
+/* ===== Where do you stand ===== */
+.who{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.who button{cursor:pointer;color:var(--ink);background:var(--card);border:1px solid var(--rule-strong);border-radius:999px;padding:.4rem 1rem;min-height:44px;transition:border-color .15s ease-out,color .15s ease-out}
+.who button:hover{border-color:var(--terra);color:var(--terra)}
+.who button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.ledger{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:0;margin-top:1rem;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.ledger > div{padding:1.4rem 1.5rem;min-width:0}
+.ledger > div + div{border-left:1px solid var(--rule)}
+.who-pic{padding:1.4rem 0 1.4rem 1.5rem;align-self:center}
+.ledger h3{font-size:1.2rem;margin-bottom:.6rem}
+.ledger ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.4rem;color:var(--ink-soft)}
+
+@media (max-width:760px){
+  .meal{grid-template-columns:1fr;gap:1rem;padding:1rem .85rem 1.25rem}
+  .meal .stop text{font-size:25px} .meal .stop text.sub{font-size:17px} .meal .stop text.num{display:none}
+  .meal .mid.big{font-size:34px} .meal .mid.small{font-size:19px}
+  .meal-cap{min-height:0}
+  .meal-cap h3{font-size:1.35rem}
+  .meal-nav{justify-content:space-between}
+  .ledger{grid-template-columns:1fr}
+  .ledger > div + div{border-left:0;border-top:1px solid var(--rule)}
+  .who-pic{padding:1rem 1rem 0}
+}
+@media (prefers-reduced-motion: reduce){ .meal .arc,.meal .stop circle,.meal-nav button,.who button{transition:none} }
 </style>
 </head>
 <body data-page="blog">
@@ -453,6 +523,100 @@ nav.main{margin-left:auto}
   go(reduce ? S.length - 1 : 0);
   if (playing && 'IntersectionObserver' in window) new IntersectionObserver(en => { if (en[0].isIntersecting && playing) play(); else clearInterval(timer); }).observe(box);
   else stop();
+})();
+</script>
+
+<script>
+/* Follow one meal */
+(function(){
+  const box=document.querySelector('[data-meal]'); if(!box) return;
+  // k = what leaves this stop: 'm' money, 'v' something else
+  const S=[
+    {t:'Guests', s:'from the city', k:'m', h:'A family drives out for lunch',
+     p:'It is about forty minutes from the city. They come for good food and a slower day.',
+     mv:'Moving on: their payment for the meal', ph:'Guests arriving, or a family at a café table.'},
+    {t:'The café', s:'the bill', k:'m', h:'The meal is paid for',
+     p:'That payment is what keeps the café and the stays running. But it does not stop here.',
+     mv:'Moving on: money, on its way to people', ph:'The café counter or kitchen at work.'},
+    {t:'The team', s:'wages', k:'m', h:'It becomes wages',
+     p:'Salaries for the full-time team from the village, and wages for women who manage their households and still come in for a few hours. Steady work, too, for local repair teams and suppliers.',
+     mv:'Moving on: the same earnings, going further', ph:'The team from the village, together.'},
+    {t:'The village', s:'shared life', k:'v', h:'It becomes shared things',
+     p:'A community kitchen that feeds everyone working here. Honorariums for the volunteers and interns who run the smart-village centre, community outreach and the children’s library. It also helps Kaaya offer fellowships.',
+     mv:'From here on, it is no longer money', ph:'Women’s Day, the children’s library or the community kitchen.'},
+    {t:'The makers', s:'garden, craft', k:'v', h:'The village sends its own things back',
+     p:'Vegetables from the kitchen gardens. Pickles and craft for the Mart. Art on the gallery walls. And the cooking and care of the women who run the place.',
+     mv:'Moving on: food, craft, art and care', ph:'The kitchen garden, jars in the Mart, or the gallery wall.'},
+    {t:'The table', s:'the plate', k:'v', h:'Which is what the family came for',
+     p:'The plate in front of them was grown and cooked by the people their bill helps to pay. They are treated as family rather than as customers, and some keep coming back.',
+     mv:'Moving on: a reason to return', ph:'A plate of food on the table, close up.'}
+  ];
+  const NS='http://www.w3.org/2000/svg', svg=box.querySelector('svg');
+  const gA=svg.querySelector('.arcs'), gD=svg.querySelector('.dots'), gS=svg.querySelector('.stops');
+  const el=(t,at,p)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e;};
+  const C=300, R=205, r=64, n=S.length, GAP=(Math.asin(r/R)+0.06);
+  const pt=a=>[C+R*Math.cos(a), C+R*Math.sin(a)];
+  const ang=i=>-Math.PI/2+i*2*Math.PI/n;
+  S.forEach((s,i)=>{
+    const a1=ang(i)+GAP, a2=ang(i+1)-GAP-0.03, [x1,y1]=pt(a1), [x2,y2]=pt(a2);
+    s.arc=el('path',{class:'arc k-'+s.k,d:`M${x1.toFixed(1)} ${y1.toFixed(1)}A${R} ${R} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}`,'marker-end':`url(#mh-${s.k})`},gA);
+    const [x,y]=pt(ang(i));
+    const g=el('g',{class:'stop',tabindex:0,role:'button','aria-label':`Stop ${i+1}: ${s.t}. ${s.h}`},gS);
+    el('circle',{cx:x,cy:y,r},g);
+    el('text',{class:'num',x,y:y-26},g).textContent=i+1;
+    el('text',{x,y:y+3},g).textContent=s.t;
+    el('text',{class:'sub',x,y:y+24},g).textContent=s.s;
+    g.addEventListener('click',()=>go(i));
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go(i);}});
+    s.g=g;
+  });
+  const cap=box.querySelector('.meal-cap'), what=cap.querySelector('.what'), h=cap.querySelector('h3'), txt=cap.querySelector('.txt');
+  const mvSw=cap.querySelector('.on-move .sw'), mvTx=cap.querySelector('.on-move span'), shotI=box.querySelector('.shot img'), PH=[["/img/model/s1.jpg", "A family and the Kaaya team standing together on the lawn beside a thatched hut"], ["/img/model/s2.jpg", "Guests at a table under a lit thatched hut at night"], ["/img/model/s3.jpg", "Women from the team working together around the kitchen counter"], ["/img/model/s4.jpg", "People sharing a meal around a low table beside a wood fire"], ["/img/model/s5.jpg", "Rows of leafy vegetables in the kitchen garden under green netting"], ["/img/model/s6.jpg", "Steel plates of rice and curry on a wooden table, with people eating under a thatched roof"]];
+  const prev=box.querySelector('.prev'), next=box.querySelector('.next');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  let cur=0, raf=0, visible=true;
+  function go(i){
+    cur=(i+n)%n; const s=S[cur];
+    S.forEach((x,k)=>{x.g.classList.toggle('on',k===cur);x.g.setAttribute('aria-pressed',k===cur);x.arc.classList.toggle('on',k===cur);x.arc.classList.toggle('done',k<cur);});
+    what.textContent=`Stop ${cur+1} of ${n}`; h.textContent=s.h; txt.textContent=s.p;
+    mvSw.className='sw k-'+s.k; mvTx.textContent=s.mv; shotI.src=PH[cur][0]; shotI.alt=PH[cur][1];
+    next.textContent=cur===n-1?'Start again ↻':'Next stop →';
+    flow();
+  }
+  function flow(){
+    cancelAnimationFrame(raf); gD.innerHTML=''; if(reduce.matches||!visible) return;
+    const s=S[cur], L=s.arc.getTotalLength(), ds=[0,1/3,2/3].map(o=>({o,c:el('circle',{r:6,class:'dot k-'+s.k},gD)})), t0=performance.now();
+    (function tick(t){const f=(t-t0)/2600; ds.forEach(d=>{const x=(f+d.o)%1,p=s.arc.getPointAtLength(x*L);d.c.setAttribute('cx',p.x.toFixed(1));d.c.setAttribute('cy',p.y.toFixed(1));d.c.style.opacity=Math.sin(Math.PI*x).toFixed(2);}); raf=requestAnimationFrame(tick);})(t0);
+  }
+  prev.addEventListener('click',()=>go(cur-1)); next.addEventListener('click',()=>go(cur+1));
+  box.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(cur+1);} if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1);}});
+  if('IntersectionObserver' in window) new IntersectionObserver(en=>{visible=en[0].isIntersecting;flow();}).observe(box);
+  reduce.addEventListener('change',flow);
+  go(0);
+})();
+
+/* Where do you stand */
+(function(){
+  const W=[
+    {n:'A guest', g:['Payment for a meal, a stay or an evening','Buying directly from the farmers, at a fair price for their effort'],
+      r:['Good food, a souvenir, and the memory of a slower day','Being treated as family rather than as a customer','A sense of where the food comes from, and stories to take back']},
+    {n:'Someone from the village', g:['Produce from the kitchen gardens','Food items, pickles and craft for the Mart','The cooking and care that run the place','What you know of seed, soil, cattle and fieldwork'],
+      r:['Wages and salaries close to home','Cash flow to local vendors and suppliers','A space where the village, especially its women, can come together','The attention of visitors who want to learn from you']},
+    {n:'A learner', g:['Your attention to the people who teach you','Art in the gallery, handprints on the walls','Stories that linger in conversations and blogs'],
+      r:['What farmers and community members know, taught where they practise it every day']},
+    {n:'A patron', g:['Birthdays, family gatherings and guest meets held here','Meals at the café rather than in the city, though it means a forty-minute drive'],
+      r:['A place that feels partly your own','The quiet satisfaction of seeing what you spend become wages, a community kitchen and fellowships']},
+    {n:'Government/Institutions', g:['Information, schemes and services closer to people, now under the Setu Aayog smart-village initiative','A larger perspective, scale and convergence: for example, the cluster of 8–12 villages is now under the Setu Aayog smart-village programme'],
+      r:['An anchor already on the ground, trusted by the community','Somewhere a programme can take root and have impact']},
+    {n:'Kaaya as an enterprise', g:['An independent platform for community events','A market, wages, salaries and honorariums','An open space for the village'],
+      r:['The income that keeps the café and the stays going','Produce, craft, cooking and care from the village']}
+  ];
+  const who=document.querySelector('.who'); if(!who) return; const g=document.querySelector('.ledger .g'), r=document.querySelector('.ledger .r');
+  const fill=(ul,arr)=>{ul.innerHTML='';arr.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li);});};
+  const bs=W.map((w,i)=>{const b=document.createElement('button');b.type='button';b.textContent=w.n;b.addEventListener('click',()=>pick(i));who.appendChild(b);return b;});
+  const WP=[["/img/model/r1.jpg", "Children climbing a tree on the campus while a woman reaches up to help"], ["/img/model/r2.jpg", "Women seated in a circle preparing produce for the market"], ["/img/model/r3.jpg", "A visitor sitting on the grass watching two women winnow grain"], ["/img/model/r4.jpg", "A group gathered around a birthday cake in the caf\u00e9 hall"], ["/img/model/r5.jpg", "A volunteer reading a picture book with children on the floor of the village centre"], ["/img/model/r6.jpg", "A speaker addressing a small group seated on the stone steps of the open-air amphitheatre"]], wi=document.querySelector('.who-pic img');
+  function pick(i){wi.src=WP[i][0];wi.alt=WP[i][1];bs.forEach((b,k)=>b.setAttribute('aria-pressed',k===i?'true':'false'));fill(g,W[i].g);fill(r,W[i].r);}
+  pick(0);
 })();
 </script>
 </body>

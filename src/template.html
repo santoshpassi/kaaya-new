@@ -253,6 +253,76 @@ nav.main{margin-left:auto}
   .reimagine{padding:1.4rem}
 }
 @media (prefers-reduced-motion: reduce){.vx .node,.vx .link{transition:none}}
+
+:root{--flow-money:var(--terra);--flow-value:var(--forest)}
+.sw{width:22px;height:3px;border-radius:2px;display:inline-block;flex:none}
+.sw.k-m{background:var(--flow-money)} .sw.k-v{background:var(--flow-value)}
+.meal button,.who button{font:inherit}
+/* ===== Follow one meal ===== */
+.meal{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2.5rem;align-items:center;margin-top:1.25rem;
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:1.5rem}
+.meal-fig{display:flex;flex-direction:column;gap:.5rem;min-width:0}
+.meal svg{width:100%;height:auto;display:block;-webkit-tap-highlight-color:transparent}
+.meal .arc{fill:none;stroke-width:3;opacity:.28;transition:opacity .25s ease-out}
+.meal .arc.done{opacity:.75}
+.meal .arc.on{opacity:1;stroke-width:4.5}
+.meal .k-m{stroke:var(--flow-money)} .meal .k-v{stroke:var(--flow-value)}
+.meal .ah-m{fill:var(--flow-money);stroke:none} .meal .ah-v{fill:var(--flow-value);stroke:none}
+.meal .dot{stroke:none;pointer-events:none}
+.meal .dot.k-m{fill:var(--flow-money)} .meal .dot.k-v{fill:var(--flow-value)}
+.meal .stop{cursor:pointer}
+.meal .stop:focus{outline:none}
+.meal .stop circle{fill:var(--paper);stroke:var(--rule-strong);stroke-width:1.5;transition:stroke .2s ease-out}
+.meal .stop:hover circle{stroke:var(--ink-soft)}
+.meal .stop:focus-visible circle{stroke:var(--terra);stroke-width:3}
+.meal .stop.on circle{stroke:var(--ink);stroke-width:3}
+.meal .stop text{fill:var(--ink);font-family:var(--display);font-size:19px;text-anchor:middle;pointer-events:none}
+.meal .stop text.sub{fill:var(--ink-soft);font-family:var(--body);font-size:13.5px}
+.meal .stop text.num{fill:var(--ink-soft);font-family:var(--body);font-size:12px;font-weight:700;letter-spacing:.08em}
+.meal .mid{font-family:var(--display);text-anchor:middle;fill:var(--ink)}
+.meal .mid.big{font-size:30px;font-style:italic;font-weight:300}
+.meal .mid.small{font-family:var(--body);font-size:14px;fill:var(--ink-soft)}
+.key{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.5rem;font-size:.88rem;color:var(--ink-soft)}
+.key li{display:flex;align-items:center;gap:.5rem}
+.meal-side{display:flex;flex-direction:column;gap:1.1rem;min-width:0}
+.meal-cap{display:flex;flex-direction:column;gap:.6rem;min-height:13.5rem}
+.meal-cap .what{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink-soft)}
+.meal-cap h3{font-size:1.6rem;line-height:1.2}
+.meal-cap .txt{color:var(--ink-soft)}
+.meal-cap .on-move{display:flex;align-items:center;gap:.55rem;font-weight:500;font-size:.95rem;color:var(--ink);padding-top:.6rem;border-top:1px solid var(--rule)}
+.shot,.who-pic{margin:0}
+.shot img,.who-pic img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:2px;outline:1px solid color-mix(in srgb,var(--ink) 12%,transparent);outline-offset:-1px}
+.meal-nav{display:flex;gap:.5rem;align-items:center}
+.meal-nav button{cursor:pointer;color:var(--ink);background:transparent;border:1px solid var(--rule-strong);border-radius:999px;padding:.45rem 1.1rem;min-height:44px;transition:border-color .15s ease-out,color .15s ease-out}
+.meal-nav button:hover{border-color:var(--terra);color:var(--terra)}
+.meal-nav .next{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.meal-nav .next:hover{background:var(--terra);border-color:var(--terra);color:var(--paper)}
+.meal-after{margin-top:1.25rem;font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(1.2rem,2.4vw,1.5rem);line-height:1.45;max-width:44ch;border-left:2px solid var(--terra);padding-left:1.1rem}
+
+/* ===== Where do you stand ===== */
+.who{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.who button{cursor:pointer;color:var(--ink);background:var(--card);border:1px solid var(--rule-strong);border-radius:999px;padding:.4rem 1rem;min-height:44px;transition:border-color .15s ease-out,color .15s ease-out}
+.who button:hover{border-color:var(--terra);color:var(--terra)}
+.who button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.ledger{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,1fr);gap:0;margin-top:1rem;background:var(--card);border:1px solid var(--rule);border-radius:2px}
+.ledger > div{padding:1.4rem 1.5rem;min-width:0}
+.ledger > div + div{border-left:1px solid var(--rule)}
+.who-pic{padding:1.4rem 0 1.4rem 1.5rem;align-self:center}
+.ledger h3{font-size:1.2rem;margin-bottom:.6rem}
+.ledger ul{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.4rem;color:var(--ink-soft)}
+
+@media (max-width:760px){
+  .meal{grid-template-columns:1fr;gap:1rem;padding:1rem .85rem 1.25rem}
+  .meal .stop text{font-size:25px} .meal .stop text.sub{font-size:17px} .meal .stop text.num{display:none}
+  .meal .mid.big{font-size:34px} .meal .mid.small{font-size:19px}
+  .meal-cap{min-height:0}
+  .meal-cap h3{font-size:1.35rem}
+  .meal-nav{justify-content:space-between}
+  .ledger{grid-template-columns:1fr}
+  .ledger > div + div{border-left:0;border-top:1px solid var(--rule)}
+  .who-pic{padding:1rem 1rem 0}
+}
+@media (prefers-reduced-motion: reduce){ .meal .arc,.meal .stop circle,.meal-nav button,.who button{transition:none} }
 </style>
 </head>
 <body>
@@ -311,6 +381,7 @@ nav.main{margin-left:auto}
       </div>
     </div>
     <p class="coin-note">What is earned offline sustains the work here. What the work makes and learns is why the offline side is worth a visit.</p>
+    <div class="strip"><figure><img loading="lazy" src="/img/home-evening.jpg" alt="Guests at a table under a lit thatched hut at night"><figcaption>An evening at the café.</figcaption></figure><figure><img loading="lazy" src="/img/home-family.jpg" alt="A family and the Kaaya team standing together on the lawn beside a thatched hut"><figcaption>A family back for another visit.</figcaption></figure></div>
   </section>
 
   <section aria-labelledby="areas-h">
@@ -335,8 +406,56 @@ nav.main{margin-left:auto}
       <h1>Kaaya's Rural-Urban Connect Model</h1>
       <p class="lede">How a small rural enterprise, a village, and people from the city can sustain each other. The café, the stays, the happenings and the market earn a modest income that goes back into the place and its people, and much else that is not money moves between them too. It is one way of working among many, and we are still learning whether it holds.</p>
     </div>
-    <img src="/img/team.jpg" alt="A young woman from the Kaaya team holding two puppies on the stone path" style="aspect-ratio:4/5">
+    <img src="/img/model-exchange.jpg" alt="A visitor sitting on the grass watching two women from the village winnow grain">
   </div>
+
+  <section aria-labelledby="meal-h">
+    <h2 id="meal-h">Follow one meal</h2>
+    <div class="prose"><p>The simplest way we have found to explain how Kaaya works is to follow a single lunch and see where it goes.</p></div>
+
+    <div class="meal" data-meal>
+      <div class="meal-fig">
+        <svg viewBox="0 0 600 600" role="group" aria-label="One meal followed around six stops, from the guests and back to their table">
+          <defs>
+            <marker id="mh-m" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.6" markerHeight="3.6" orient="auto"><path class="ah-m" d="M0 0L10 5L0 10z"/></marker>
+            <marker id="mh-v" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="3.6" markerHeight="3.6" orient="auto"><path class="ah-v" d="M0 0L10 5L0 10z"/></marker>
+          </defs>
+          <text class="mid big" x="300" y="296">One meal</text>
+          <text class="mid small" x="300" y="324">followed around</text>
+          <g class="arcs"></g><g class="dots" aria-hidden="true"></g><g class="stops"></g>
+        </svg>
+        <ul class="key" aria-label="Key">
+          <li><i class="sw k-m" aria-hidden="true"></i>Travelling as money</li>
+          <li><i class="sw k-v" aria-hidden="true"></i>Travelling as something else</li>
+        </ul>
+      </div>
+      <div class="meal-side">
+        <figure class="shot"><img alt="" width="960" height="640"></figure>
+        <div class="meal-cap" aria-live="polite">
+          <p class="what"></p><h3></h3><p class="txt"></p>
+          <p class="on-move"><i class="sw" aria-hidden="true"></i><span></span></p>
+        </div>
+        
+        <div class="meal-nav">
+          <button type="button" class="prev">← Back</button>
+          <button type="button" class="next">Next stop →</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="meal-after">Looking back, we came to see a meal less as a sale and more as a loop. Money goes out one side, and comes back as something else.</p>
+  </section>
+
+  <section aria-labelledby="who-h">
+    <h2 id="who-h">Where do you stand in it?</h2>
+    <div class="prose"><p>Everyone in the loop brings something and takes something home. Choose who you are.</p></div>
+    <div class="who" role="group" aria-label="Who are you?"></div>
+    <div class="ledger" aria-live="polite">
+      <figure class="who-pic"><img alt="" width="960" height="640"></figure>
+      <div><h3 class="g-h">What you bring</h3><ul class="g"></ul></div>
+      <div><h3 class="r-h">What you take home</h3><ul class="r"></ul></div>
+    </div>
+  </section>
 
   <section aria-labelledby="vx-h">
     <h2 id="vx-h">How value moves</h2>
@@ -456,7 +575,7 @@ nav.main{margin-left:auto}
       <p>Kaaya hosts the coordination node of the Setu Aayog Smart Village Centre programme for the Tilwari cluster. It brings together e-governance, banking, telemedicine, farming, tourism and watershed work in one place.</p>
       <p>Two volunteers from the community run the centre, where children and villagers gather for information and meetings. Kaaya set up a children's library there, also run by volunteers.</p>
     </div>
-    <div class="strip"><figure><img src="/img/isvc-meeting.jpg" alt="Women from the village at a meeting in the smart-village centre"><figcaption>A meeting at the centre, Tilwari.</figcaption></figure><figure><img src="/img/isvc-inauguration.jpg" alt="Lighting the lamp at the opening of the smart-village centre"><figcaption>The centre's opening, with Setu Aayog.</figcaption></figure></div>
+    <div class="strip"><figure><img src="/img/isvc-meeting.jpg" alt="Women from the village at a meeting in the smart-village centre"><figcaption>A meeting at the centre, Tilwari.</figcaption></figure><figure><img src="/img/isvc-inauguration.jpg" alt="Lighting the lamp at the opening of the smart-village centre"><figcaption>The centre's opening, with Setu Aayog.</figcaption></figure><figure><img loading="lazy" src="/img/cc-reading.jpg" alt="A volunteer reading a picture book with children on the floor"><figcaption>A volunteer reading with children.</figcaption></figure></div>
   </section>
   <section aria-labelledby="women-h">
     <h2 id="women-h">Women, produce and the Sunday Market</h2>
@@ -464,14 +583,14 @@ nav.main{margin-left:auto}
       <p>Farmers and kitchen gardeners sell their surplus directly to neighbours at the Sunday Market. What does not sell is solar-dried, dehydrated or pickled. Under UMSVY, women's groups train at Kaaya in processing, packaging and branding.</p>
       <p>Students map what households buy, to see where the village's money leaves for distant supply chains, and how more of it could stay.</p>
     </div>
-    <div class="strip"><figure><img src="/img/market-huddle.jpg" alt="Village women sitting in a circle planning the Farmer's Market"><figcaption>Planning the Farmer's Market.</figcaption></figure><figure><img src="/img/farm-fresh.jpg" alt="A heap of fresh red tomatoes"><figcaption>Fresh from a village farm.</figcaption></figure></div>
+    <div class="strip"><figure><img src="/img/market-huddle.jpg" alt="Village women sitting in a circle planning the Farmer's Market"><figcaption>Planning the Farmer's Market.</figcaption></figure><figure><img src="/img/farm-fresh.jpg" alt="A heap of fresh red tomatoes"><figcaption>Fresh from a village farm.</figcaption></figure><figure><img loading="lazy" src="/img/cc-market-making.jpg" alt="Women seated in a circle preparing produce for the market"><figcaption>Preparing produce for the Farmer's Market.</figcaption></figure></div>
   </section>
   <section aria-labelledby="land-h">
     <h2 id="land-h">Land and water</h2>
     <div class="prose">
       <p>Climate-smart farming, recharging springs, poly-tunnels, and helping neighbours grow their kitchen gardens organically.</p>
     </div>
-    <div class="strip"><figure><img src="/img/kitchen-garden.jpg" alt="A young man setting up a low-cost shade-net tunnel for a kitchen garden"><figcaption>A low-cost kitchen garden tunnel.</figcaption></figure></div>
+    <div class="strip"><figure><img src="/img/kitchen-garden.jpg" alt="A young man setting up a low-cost shade-net tunnel for a kitchen garden"><figcaption>A low-cost kitchen garden tunnel.</figcaption></figure><figure><img loading="lazy" src="/img/cc-garden.jpg" alt="Rows of leafy vegetables growing under green netting"><figcaption>The kitchen garden at Kaaya.</figcaption></figure><figure><img loading="lazy" src="/img/cc-plucking.jpg" alt="A young woman standing among tall leafy vegetables in the kitchen garden"><figcaption>In the kitchen garden.</figcaption></figure></div>
   </section>
   <section aria-labelledby="days-h">
     <h2 id="days-h">Days for the village</h2>
@@ -497,18 +616,20 @@ nav.main{margin-left:auto}
       </div>
       <img src="/img/padav-2.jpg" alt="Padav fellows gathered under the bamboo arch at Kaaya">
     </div>
-    <div class="strip"><figure><img src="/img/padav-1.jpg" alt="Padav fellows with their paintings laid out on the lawn"><figcaption>Padav fellows and their work.</figcaption></figure><figure><img src="/img/gallery.jpg" alt="Visitors talking in the gallery among paintings by Padav fellows"><figcaption>The Gallery at Kaaya Offline.</figcaption></figure></div>
+    <div class="strip"><figure><img src="/img/padav-1.jpg" alt="Padav fellows with their paintings laid out on the lawn"><figcaption>Padav fellows and their work.</figcaption></figure><figure><img src="/img/gallery.jpg" alt="Visitors talking in the gallery among paintings by Padav fellows"><figcaption>The Gallery at Kaaya Offline.</figcaption></figure><figure><img loading="lazy" src="/img/fl-gallery-wall.jpg" alt="Four paintings hanging on a lit gallery wall under a thatched ceiling"><figcaption>Fellows' paintings on the gallery wall.</figcaption></figure><figure><img loading="lazy" src="/img/fl-fellows.jpg" alt="A group of young people laughing together on chairs and benches in a courtyard"><figcaption>Fellows at rest.</figcaption></figure></div>
     <p style="margin-top:1rem"><a href="https://www.youtube.com/watch?v=cW4RglD-sb0" target="_blank" rel="noopener">▶ Padav, June 2023: a short film by the fellows ↗</a></p>
   </section>
   <section aria-labelledby="anu-h">
     <h2 id="anu-h">Anutraaya</h2>
     <div class="prose"><p>An incubation that asks what happens to knowledge when the conditions that produced it disappear. It rethinks food, language and craft in hill life, practised in Tilwari rather than kept in a museum.</p></div>
+    <figure class="wide"><img loading="lazy" src="/img/fl-anutraaya.jpg" alt="A speaker addressing a small group seated on the stone steps of the open-air amphitheatre"><figcaption>A session in the amphitheatre.</figcaption></figure>
   </section>
   <section aria-labelledby="youth-h">
     <h2 id="youth-h">Internships and volunteers</h2>
     <div class="prose">
       <p>Over the years, interns and volunteers from the village, from across India and from abroad have spent time here, in the garden, the kitchen, the café and the village. Their stories appear in Field Notes below.</p>
     </div>
+    <div class="strip"><figure><img loading="lazy" src="/img/fl-field.jpg" alt="Volunteers preparing a terraced field alongside a farmer from the village"><figcaption>Preparing a field, with a farmer from the village.</figcaption></figure><figure><img loading="lazy" src="/img/fl-drawing.jpg" alt="A volunteer sitting with four children who are drawing on a stone platform under a tree"><figcaption>Drawing under the tree.</figcaption></figure></div>
   </section>
   <section aria-labelledby="slf-h">
     <p class="eyebrow">Call for applications</p>
@@ -549,6 +670,7 @@ nav.main{margin-left:auto}
       <div class="use"><h3>From consuming to making</h3><p>In the maker's space young people upcycle and reuse, and make seed bombs for reforestation, so that a large problem comes with something they can do with their own hands.</p></div>
       <div class="use"><h3>A connection with roots</h3><p>Supermarkets and screens keep the city and the village apart. Time here shows how village life quietly supports city life, and what each of us can do as a consumer.</p></div>
     </div>
+    <div class="strip"><figure><img loading="lazy" src="/img/lc-paddy.jpg" alt="Visitors standing at the edge of a paddy field watching a farmer at work"><figcaption>At the edge of a paddy field.</figcaption></figure><figure><img loading="lazy" src="/img/lc-goat.jpg" alt="Children offering a leafy branch to a goat on the grass"><figcaption>Feeding a goat.</figcaption></figure><figure><img loading="lazy" src="/img/lc-tree.jpg" alt="Children climbing a tree on the campus while a woman reaches up to help"><figcaption>Up in the tree.</figcaption></figure></div>
   </section>
 
   <section aria-labelledby="journeys-h">
@@ -596,7 +718,7 @@ nav.main{margin-left:auto}
   <section aria-labelledby="space-h">
     <h2 id="space-h">The space</h2>
     <div class="prose"><p>Mud cottages and a dormitory built from the site's own soil, a hall, an open-air amphitheatre, sit-outs and lawns, a kitchen garden, and the village all around. Forty minutes from Dehradun.</p></div>
-    <div class="strip"><figure><img src="/img/moon-arch.jpg" alt="A bamboo moon arch framing a mud building and lawn"><figcaption>The bamboo arch and the hall.</figcaption></figure><figure><img src="/img/room.jpg" alt="A simple room with whitewashed mud walls and a wooden roof"><figcaption>A room in one of the mud cottages.</figcaption></figure></div>
+    <div class="strip"><figure><img src="/img/moon-arch.jpg" alt="A bamboo moon arch framing a mud building and lawn"><figcaption>The bamboo arch and the hall.</figcaption></figure><figure><img src="/img/room.jpg" alt="A simple room with whitewashed mud walls and a wooden roof"><figcaption>A room in one of the mud cottages.</figcaption></figure><figure><img loading="lazy" src="/img/lc-circle.jpg" alt="Children and a facilitator sitting in a circle on cushions in a mud-walled room"><figcaption>A session in one of the mud rooms.</figcaption></figure><figure><img loading="lazy" src="/img/lc-kitchen-view.jpg" alt="The bamboo moon arch and garden seen across a kitchen counter"><figcaption>The moon arch, seen from the open kitchen.</figcaption></figure></div>
   </section>
 
   <section aria-labelledby="camp-h">
@@ -786,6 +908,100 @@ nav.main{margin-left:auto}
   go(reduce ? S.length - 1 : 0);
   if (playing && 'IntersectionObserver' in window) new IntersectionObserver(en => { if (en[0].isIntersecting && playing) play(); else clearInterval(timer); }).observe(box);
   else stop();
+})();
+</script>
+
+<script>
+/* Follow one meal */
+(function(){
+  const box=document.querySelector('[data-meal]'); if(!box) return;
+  // k = what leaves this stop: 'm' money, 'v' something else
+  const S=[
+    {t:'Guests', s:'from the city', k:'m', h:'A family drives out for lunch',
+     p:'It is about forty minutes from the city. They come for good food and a slower day.',
+     mv:'Moving on: their payment for the meal', ph:'Guests arriving, or a family at a café table.'},
+    {t:'The café', s:'the bill', k:'m', h:'The meal is paid for',
+     p:'That payment is what keeps the café and the stays running. But it does not stop here.',
+     mv:'Moving on: money, on its way to people', ph:'The café counter or kitchen at work.'},
+    {t:'The team', s:'wages', k:'m', h:'It becomes wages',
+     p:'Salaries for the full-time team from the village, and wages for women who manage their households and still come in for a few hours. Steady work, too, for local repair teams and suppliers.',
+     mv:'Moving on: the same earnings, going further', ph:'The team from the village, together.'},
+    {t:'The village', s:'shared life', k:'v', h:'It becomes shared things',
+     p:'A community kitchen that feeds everyone working here. Honorariums for the volunteers and interns who run the smart-village centre, community outreach and the children’s library. It also helps Kaaya offer fellowships.',
+     mv:'From here on, it is no longer money', ph:'Women’s Day, the children’s library or the community kitchen.'},
+    {t:'The makers', s:'garden, craft', k:'v', h:'The village sends its own things back',
+     p:'Vegetables from the kitchen gardens. Pickles and craft for the Mart. Art on the gallery walls. And the cooking and care of the women who run the place.',
+     mv:'Moving on: food, craft, art and care', ph:'The kitchen garden, jars in the Mart, or the gallery wall.'},
+    {t:'The table', s:'the plate', k:'v', h:'Which is what the family came for',
+     p:'The plate in front of them was grown and cooked by the people their bill helps to pay. They are treated as family rather than as customers, and some keep coming back.',
+     mv:'Moving on: a reason to return', ph:'A plate of food on the table, close up.'}
+  ];
+  const NS='http://www.w3.org/2000/svg', svg=box.querySelector('svg');
+  const gA=svg.querySelector('.arcs'), gD=svg.querySelector('.dots'), gS=svg.querySelector('.stops');
+  const el=(t,at,p)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);p.appendChild(e);return e;};
+  const C=300, R=205, r=64, n=S.length, GAP=(Math.asin(r/R)+0.06);
+  const pt=a=>[C+R*Math.cos(a), C+R*Math.sin(a)];
+  const ang=i=>-Math.PI/2+i*2*Math.PI/n;
+  S.forEach((s,i)=>{
+    const a1=ang(i)+GAP, a2=ang(i+1)-GAP-0.03, [x1,y1]=pt(a1), [x2,y2]=pt(a2);
+    s.arc=el('path',{class:'arc k-'+s.k,d:`M${x1.toFixed(1)} ${y1.toFixed(1)}A${R} ${R} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}`,'marker-end':`url(#mh-${s.k})`},gA);
+    const [x,y]=pt(ang(i));
+    const g=el('g',{class:'stop',tabindex:0,role:'button','aria-label':`Stop ${i+1}: ${s.t}. ${s.h}`},gS);
+    el('circle',{cx:x,cy:y,r},g);
+    el('text',{class:'num',x,y:y-26},g).textContent=i+1;
+    el('text',{x,y:y+3},g).textContent=s.t;
+    el('text',{class:'sub',x,y:y+24},g).textContent=s.s;
+    g.addEventListener('click',()=>go(i));
+    g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go(i);}});
+    s.g=g;
+  });
+  const cap=box.querySelector('.meal-cap'), what=cap.querySelector('.what'), h=cap.querySelector('h3'), txt=cap.querySelector('.txt');
+  const mvSw=cap.querySelector('.on-move .sw'), mvTx=cap.querySelector('.on-move span'), shotI=box.querySelector('.shot img'), PH=[["/img/model/s1.jpg", "A family and the Kaaya team standing together on the lawn beside a thatched hut"], ["/img/model/s2.jpg", "Guests at a table under a lit thatched hut at night"], ["/img/model/s3.jpg", "Women from the team working together around the kitchen counter"], ["/img/model/s4.jpg", "People sharing a meal around a low table beside a wood fire"], ["/img/model/s5.jpg", "Rows of leafy vegetables in the kitchen garden under green netting"], ["/img/model/s6.jpg", "Steel plates of rice and curry on a wooden table, with people eating under a thatched roof"]];
+  const prev=box.querySelector('.prev'), next=box.querySelector('.next');
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  let cur=0, raf=0, visible=true;
+  function go(i){
+    cur=(i+n)%n; const s=S[cur];
+    S.forEach((x,k)=>{x.g.classList.toggle('on',k===cur);x.g.setAttribute('aria-pressed',k===cur);x.arc.classList.toggle('on',k===cur);x.arc.classList.toggle('done',k<cur);});
+    what.textContent=`Stop ${cur+1} of ${n}`; h.textContent=s.h; txt.textContent=s.p;
+    mvSw.className='sw k-'+s.k; mvTx.textContent=s.mv; shotI.src=PH[cur][0]; shotI.alt=PH[cur][1];
+    next.textContent=cur===n-1?'Start again ↻':'Next stop →';
+    flow();
+  }
+  function flow(){
+    cancelAnimationFrame(raf); gD.innerHTML=''; if(reduce.matches||!visible) return;
+    const s=S[cur], L=s.arc.getTotalLength(), ds=[0,1/3,2/3].map(o=>({o,c:el('circle',{r:6,class:'dot k-'+s.k},gD)})), t0=performance.now();
+    (function tick(t){const f=(t-t0)/2600; ds.forEach(d=>{const x=(f+d.o)%1,p=s.arc.getPointAtLength(x*L);d.c.setAttribute('cx',p.x.toFixed(1));d.c.setAttribute('cy',p.y.toFixed(1));d.c.style.opacity=Math.sin(Math.PI*x).toFixed(2);}); raf=requestAnimationFrame(tick);})(t0);
+  }
+  prev.addEventListener('click',()=>go(cur-1)); next.addEventListener('click',()=>go(cur+1));
+  box.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();go(cur+1);} if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1);}});
+  if('IntersectionObserver' in window) new IntersectionObserver(en=>{visible=en[0].isIntersecting;flow();}).observe(box);
+  reduce.addEventListener('change',flow);
+  go(0);
+})();
+
+/* Where do you stand */
+(function(){
+  const W=[
+    {n:'A guest', g:['Payment for a meal, a stay or an evening','Buying directly from the farmers, at a fair price for their effort'],
+      r:['Good food, a souvenir, and the memory of a slower day','Being treated as family rather than as a customer','A sense of where the food comes from, and stories to take back']},
+    {n:'Someone from the village', g:['Produce from the kitchen gardens','Food items, pickles and craft for the Mart','The cooking and care that run the place','What you know of seed, soil, cattle and fieldwork'],
+      r:['Wages and salaries close to home','Cash flow to local vendors and suppliers','A space where the village, especially its women, can come together','The attention of visitors who want to learn from you']},
+    {n:'A learner', g:['Your attention to the people who teach you','Art in the gallery, handprints on the walls','Stories that linger in conversations and blogs'],
+      r:['What farmers and community members know, taught where they practise it every day']},
+    {n:'A patron', g:['Birthdays, family gatherings and guest meets held here','Meals at the café rather than in the city, though it means a forty-minute drive'],
+      r:['A place that feels partly your own','The quiet satisfaction of seeing what you spend become wages, a community kitchen and fellowships']},
+    {n:'Government/Institutions', g:['Information, schemes and services closer to people, now under the Setu Aayog smart-village initiative','A larger perspective, scale and convergence: for example, the cluster of 8–12 villages is now under the Setu Aayog smart-village programme'],
+      r:['An anchor already on the ground, trusted by the community','Somewhere a programme can take root and have impact']},
+    {n:'Kaaya as an enterprise', g:['An independent platform for community events','A market, wages, salaries and honorariums','An open space for the village'],
+      r:['The income that keeps the café and the stays going','Produce, craft, cooking and care from the village']}
+  ];
+  const who=document.querySelector('.who'); if(!who) return; const g=document.querySelector('.ledger .g'), r=document.querySelector('.ledger .r');
+  const fill=(ul,arr)=>{ul.innerHTML='';arr.forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li);});};
+  const bs=W.map((w,i)=>{const b=document.createElement('button');b.type='button';b.textContent=w.n;b.addEventListener('click',()=>pick(i));who.appendChild(b);return b;});
+  const WP=[["/img/model/r1.jpg", "Children climbing a tree on the campus while a woman reaches up to help"], ["/img/model/r2.jpg", "Women seated in a circle preparing produce for the market"], ["/img/model/r3.jpg", "A visitor sitting on the grass watching two women winnow grain"], ["/img/model/r4.jpg", "A group gathered around a birthday cake in the caf\u00e9 hall"], ["/img/model/r5.jpg", "A volunteer reading a picture book with children on the floor of the village centre"], ["/img/model/r6.jpg", "A speaker addressing a small group seated on the stone steps of the open-air amphitheatre"]], wi=document.querySelector('.who-pic img');
+  function pick(i){wi.src=WP[i][0];wi.alt=WP[i][1];bs.forEach((b,k)=>b.setAttribute('aria-pressed',k===i?'true':'false'));fill(g,W[i].g);fill(r,W[i].r);}
+  pick(0);
 })();
 </script>
 </body>
