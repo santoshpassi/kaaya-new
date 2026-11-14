@@ -14,7 +14,9 @@ Kaaya runs on exchanges that go both ways. Money is one of them, but so are food
 
 We share it here in case it is useful to others working in remote places: social change agents, people in government, and other social enterprises. It needs no large funding, only a small enterprise, a willing community and time.
 
-You can also see it as an animated picture on [the model page](/the-model/).
+The picture below shows the whole of it. Choose a line or a place to read what moves each way. For a simpler way in, [follow one meal on the model page](/the-model/).
+
+[[value-exchange-diagram]]
 
 ## Layer 1: The core
 
@@ -64,8 +66,42 @@ You can also see it as an animated picture on [the model page](/the-model/).
 
 **The village and Kaaya to government:** An anchor already on the ground, trusted by the community, where programmes can take root and be looked after. Looking back, we think this is why Setu Aayog chose to work with us: the relationships were already there.
 
+## How the coin turns
+
+**From Kaaya Offline to the work:** Every meal, stay, ticket and jar sold becomes wages, a kitchen, honorariums, events and fellowships.
+
+**From the work back to Kaaya Offline:** Vegetables from the kitchen garden on the café's plates, village makers' produce and craft in the Mart, and art by Padav fellows on the gallery walls.
+
+## What the earnings make possible
+
+### A team from the village
+
+Salaries for the full-time team from the local community. Wages for women who manage their households and still come in for a few hours. Steady work for local repair and maintenance teams and suppliers as the campus grows.
+
+### A community kitchen
+
+One kitchen that feeds everyone working at Kaaya, including the volunteers and interns who come to support community initiatives.
+
+### The smart-village centre
+
+Honorariums for the two community volunteers who run the ISVC centre at Tilwari, where children and villagers gather for information and meetings. Kaaya also set up the children's library there, run by volunteers.
+
+### Days for the village, and its young people
+
+Women's Day, Independence Day and Children's Day with the women and youth of the village. Internships for local youth, and fellowships such as Padav.
+
+![Village women gathered on stage for International Women's Day](/img/womens-day.jpg "Women's Day with the women of the village.")
+
+## Coming back, and going deeper
+
+Some guests come back often enough to become part of the place: as members, as patrons, as people who plan events with us.
+
 ## Could this work elsewhere?
 
 We don't think Kaaya is a template, but the pattern may travel. A small enterprise that earns its own way, buys and hires locally, and opens its space to the village. Visitors who pay, and are given something real in return. Learners who take knowledge and give back attention. Patrons who choose to spend where it matters. A government that finds a trusted partner on the ground.
 
 None of these is new on its own. What we are re-imagining is how they fit together, and how value can be seen in more forms than money. We are still learning whether it holds, and we would be glad to learn from others trying the same.
+
+## Still learning
+
+Much of what happens here builds on what the village, government programmes and organisations working in these hills had already begun. We are grateful to learn alongside them, and we expect this model to keep changing as we understand more.

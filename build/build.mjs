@@ -38,6 +38,9 @@ const FEEDS = {
   model:       { title: 'Reflections',       topic: 'reflections' },
 };
 
+// The value exchange diagram (its styles and script live in src/template.html).
+const VX_DIAGRAM = `<div class="vx" data-vx><div class="vx-fig"><svg viewBox="0 0 700 640" role="group" aria-labelledby="vx-t"><title id="vx-t">How value moves at Kaaya: six parties joined by lines that carry something each way</title><defs><marker id="ah-m" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path class="ah-m" d="M0 0L10 5L0 10z"/></marker><marker id="ah-v" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path class="ah-v" d="M0 0L10 5L0 10z"/></marker></defs><g class="links"></g><g class="dots" aria-hidden="true"></g><g class="nodes" aria-hidden="true"></g></svg><ul class="vx-key" aria-label="Key"><li><i class="sw k-m" aria-hidden="true"></i>Money and trade</li><li><i class="sw k-v" aria-hidden="true"></i>Value that isn't money</li></ul></div><div class="vx-side"><div class="vx-cap" aria-live="polite"><p class="what"></p><h3></h3><div class="say"></div></div><div class="vx-ctl"><button type="button" class="step prev" aria-label="Previous">←</button><div class="dots"></div><button type="button" class="step next" aria-label="Next">→</button><span class="count" aria-hidden="true"></span></div></div></div>`;
+
 const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const strip = h => String(h || '').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
 const clip = (t, n = 160) => { t = strip(t); return t.length <= n ? t : t.slice(0, t.lastIndexOf(' ', n - 1)) + '…'; };
@@ -89,6 +92,8 @@ const md = new Marked({
     paragraph(token) {
       const t = token.tokens || [];
       if (t.length === 1 && t[0].type === 'image') return this.parser.parseInline(t) + '\n';
+      // A paragraph that is only [[value-exchange-diagram]] becomes the moving diagram.
+      if (token.text.replace(/\\/g, '').trim() === '[[value-exchange-diagram]]') return VX_DIAGRAM + '\n';
       const id = yt(token.text.trim()) && token.text.trim() === token.text.trim().split(/\s/)[0] && yt(token.text.trim());
       if (id) return `<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="Video" allowfullscreen loading="lazy"></iframe></div>\n`;
       return `<p>${this.parser.parseInline(t)}</p>\n`;
