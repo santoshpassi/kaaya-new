@@ -51,7 +51,7 @@ collections:
           - { label: 'Neighbourhoods (Community and climate)', value: neighbourhoods }
           - { label: 'Field Notes (Fellowships)', value: field-notes }
           - { label: 'Learning Journeys (Learning Centre)', value: learning-journeys }
-          - { label: 'Reflections (The model)', value: reflections }
+          - { label: 'Reflections', value: reflections }
       - { name: draft, label: Draft (keep off the site), widget: boolean, default: false, required: false }
       - { name: updated, label: Last updated, widget: datetime, required: false }
       - { name: minutes, label: Minutes to read, widget: number, required: false, value_type: int, hint: 'Leave empty to work it out from the length.' }

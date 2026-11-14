@@ -1,5 +1,5 @@
 ---
-title: "Kaaya's Rural-Urban Connect Model: How Value Moves Both Ways"
+title: "How Value Moves Both Ways"
 date: 2026-11-09T06:15:00Z
 excerpt: Kaaya runs on exchanges that go both ways. Money is one of them, but so are food, knowledge, care, attention and trust. Looking back, we came to see that when each party gains something it values, the arrangement keeps itself going.
 cover: /img/journal/kaayas-rural-urban-connect-model/498114095_2948571075337626_7783011007417690069_n.jpg
@@ -14,7 +14,7 @@ Kaaya runs on exchanges that go both ways. Money is one of them, but so are food
 
 We share it here in case it is useful to others working in remote places: social change agents, people in government, and other social enterprises. It needs no large funding, only a small enterprise, a willing community and time.
 
-The picture below shows the whole of it. Choose a line or a place to read what moves each way. For a simpler way in, [follow one meal on the model page](/the-model/).
+The picture below shows the whole of it. Choose a line or a place to read what moves each way.
 
 [[value-exchange-diagram]]
 
@@ -104,4 +104,4 @@ None of these is new on its own. What we are re-imagining is how they fit togeth
 
 ## Still learning
 
-Much of what happens here builds on what the village, government programmes and organisations working in these hills had already begun. We are grateful to learn alongside them, and we expect this model to keep changing as we understand more.
+Much of what happens here builds on what the village, government programmes and organisations working in these hills had already begun. We are grateful to learn alongside them, and we expect this picture to keep changing as we understand more.

@@ -123,7 +123,7 @@ function readPosts() {
       excerpt: d.excerpt || clip(md.parse(body), 200),
       cover: d.cover || '', topics: Array.isArray(d.topics) ? d.topics : d.topics ? [d.topics] : [],
       minutes: Number(d.minutes) || Math.max(1, Math.round(words / 200)),
-      body: (UNPUBLISHED.includes('model') ? body.replace(' For a simpler way in, [follow one meal on the model page](/the-model/).', '') : body).trim(),
+      body: body.trim(),
     };
   }).filter(p => !p.draft).sort((a, b) => b.date.localeCompare(a.date));
 }
@@ -132,7 +132,7 @@ function readPosts() {
 let tpl = fs.readFileSync(path.join(ROOT, 'src', 'template.html'), 'utf8');
 if (UNPUBLISHED.includes('model')) {
   tpl = tpl.replace(/\s*<a href="\/the-model\/" data-view="model">The model<\/a>/, '')
-           .replace('<a href="/the-model/">How the two sustain each other →</a>', '<a href="/journal/kaayas-rural-urban-connect-model/">How the two sustain each other →</a>');
+           .replace('<a href="/the-model/">How the two sustain each other →</a>', '<a href="/journal/how-value-moves-both-ways/">How the two sustain each other →</a>');
   fs.rmSync(path.join(ROOT, 'the-model'), { recursive: true, force: true });
 }
 const mStart = tpl.indexOf('<main class="wrap">') + '<main class="wrap">'.length;
@@ -248,6 +248,15 @@ for (const [slug, t] of Object.entries(TOPICS)) topicPage(slug, t, posts.filter(
 
 // ---------- 404 ----------
 write('/404.html', page({ key: 'post', h: head({ title: 'Page not found · Kaaya', desc: 'Kaaya is a mud-built campus in Tilwari village, Dehradun.', url: SITE + '/', img: '/img/niche.jpg' }).replace('<link rel="canonical"', '<meta name="robots" content="noindex"><link rel="canonical"'), view: views.post, share: '' }));
+
+// ---------- Old addresses that moved ----------
+// A story whose address changed keeps a small page at the old one that sends readers on.
+const MOVED = { '/journal/kaayas-rural-urban-connect-model/': '/journal/how-value-moves-both-ways/' };
+for (const [from, to] of Object.entries(MOVED)) {
+  const dir = path.join(ROOT, from);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>This story has moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${SITE}${to}"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>This story has moved. <a href="${to}">Continue to the story</a>.</p></body></html>\n`);
+}
 
 // ---------- sitemap + robots ----------
 const lastmod = Object.fromEntries(posts.map(p => [`/journal/${p.slug}/`, (p.updated || p.date).slice(0, 10)]));
