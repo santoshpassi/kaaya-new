@@ -19,6 +19,11 @@ const SECTIONS = {
   journal:     { path: '/journal/',                img: '/img/niche.jpg',        title: 'Journal · Kaaya' },
   model:       { path: '/the-model/',              img: '/img/model-exchange.jpg', title: "Kaaya's Rural-Urban Connect Model" },
 };
+// Section pages held back from the site for now. A held-back page is not written, its
+// folder is removed, its menu link is dropped and links to it elsewhere are re-pointed.
+// To publish The model again, empty this list: const UNPUBLISHED = [];
+const UNPUBLISHED = ['model'];
+
 const TOPICS = {
   'origins':           { title: 'Origins' },
   'neighbourhoods':    { title: 'Neighbourhoods' },
@@ -118,13 +123,18 @@ function readPosts() {
       excerpt: d.excerpt || clip(md.parse(body), 200),
       cover: d.cover || '', topics: Array.isArray(d.topics) ? d.topics : d.topics ? [d.topics] : [],
       minutes: Number(d.minutes) || Math.max(1, Math.round(words / 200)),
-      body: body.trim(),
+      body: (UNPUBLISHED.includes('model') ? body.replace(' For a simpler way in, [follow one meal on the model page](/the-model/).', '') : body).trim(),
     };
   }).filter(p => !p.draft).sort((a, b) => b.date.localeCompare(a.date));
 }
 
 // ---------- Template ----------
-const tpl = fs.readFileSync(path.join(ROOT, 'src', 'template.html'), 'utf8');
+let tpl = fs.readFileSync(path.join(ROOT, 'src', 'template.html'), 'utf8');
+if (UNPUBLISHED.includes('model')) {
+  tpl = tpl.replace(/\s*<a href="\/the-model\/" data-view="model">The model<\/a>/, '')
+           .replace('<a href="/the-model/">How the two sustain each other →</a>', '<a href="/journal/kaayas-rural-urban-connect-model/">How the two sustain each other →</a>');
+  fs.rmSync(path.join(ROOT, 'the-model'), { recursive: true, force: true });
+}
 const mStart = tpl.indexOf('<main class="wrap">') + '<main class="wrap">'.length;
 const mEnd = tpl.indexOf('</main>');
 const before = tpl.slice(0, mStart), after = tpl.slice(mEnd);
@@ -191,6 +201,7 @@ const withFeed = (view, key) => view.replace(/<\/div>\s*$/, feed(key) + '\n</div
 
 // ---------- Sections ----------
 for (const [key, s] of Object.entries(SECTIONS)) {
+  if (UNPUBLISHED.includes(key)) continue;
   const url = SITE + s.path;
   const title = s.title;
   const desc = clip(ledeOf(key) || 'Kaaya is a mud-built campus in Tilwari village, Dehradun, where rural and urban communities meet and learn from each other.');
