@@ -209,6 +209,29 @@ for (const [key, s] of Object.entries(SECTIONS)) {
   write(s.path, page({ key, h: head({ title, desc, url, img: s.img, ld }), view: withFeed(views[key], key), share: shareBar(title, url) }));
 }
 
+// ---------- Held-back section pages ----------
+// While The model is held back, its address shows a short "coming soon" note instead of
+// "page not found". Kept out of the sitemap and out of search (noindex).
+if (UNPUBLISHED.includes('model')) {
+  const s = SECTIONS.model, url = SITE + s.path;
+  const view = `<div id="view-model" data-page="model">
+  <div class="band">
+    <div class="model-head">
+      <p class="eyebrow">The model</p>
+      <h1>Coming soon…</h1>
+      <p class="lede">We are still learning how the café, the village and the people who visit keep one another going. This page will open once that thinking has had a little more time to settle.</p>
+    </div>
+    <img src="${s.img}" alt="A visitor sitting on the grass watching two women from the village winnow grain">
+  </div>
+  <section><div class="prose"><p>Meanwhile, the Journal follows the journey as it unfolds. <a href="/journal/how-value-moves-both-ways/">How Value Moves Both Ways</a> is a good place to begin, and there are more <a href="/topics/reflections/">Reflections</a> there too.</p></div></section>
+</div>`;
+  const h = head({ title: 'The model · Coming soon · Kaaya', desc: 'This page is still taking shape. Meanwhile, the Kaaya Journal follows the journey as it unfolds.', url, img: s.img })
+    .replace('<link rel="canonical"', '<meta name="robots" content="noindex"><link rel="canonical"');
+  const f = path.join(ROOT, s.path, 'index.html');
+  fs.mkdirSync(path.dirname(f), { recursive: true });
+  fs.writeFileSync(f, page({ key: 'model', h, view, share: '' }));
+}
+
 // ---------- Story pages ----------
 for (const p of posts) {
   const url = `${SITE}/journal/${p.slug}/`;
@@ -250,12 +273,16 @@ for (const [slug, t] of Object.entries(TOPICS)) topicPage(slug, t, posts.filter(
 write('/404.html', page({ key: 'post', h: head({ title: 'Page not found · Kaaya', desc: 'Kaaya is a mud-built campus in Tilwari village, Dehradun.', url: SITE + '/', img: '/img/niche.jpg' }).replace('<link rel="canonical"', '<meta name="robots" content="noindex"><link rel="canonical"'), view: views.post, share: '' }));
 
 // ---------- Old addresses that moved ----------
-// A story whose address changed keeps a small page at the old one that sends readers on.
-const MOVED = { '/journal/kaayas-rural-urban-connect-model/': '/journal/how-value-moves-both-ways/' };
+// A page or story whose address changed keeps a small page at the old one that sends readers on.
+// The /visit/ address comes from the earlier site; people still reach it from Google.
+const MOVED = {
+  '/journal/kaayas-rural-urban-connect-model/': '/journal/how-value-moves-both-ways/',
+  '/visit/': '/learning-centre/#plan-h',
+};
 for (const [from, to] of Object.entries(MOVED)) {
   const dir = path.join(ROOT, from);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>This story has moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${SITE}${to}"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>This story has moved. <a href="${to}">Continue to the story</a>.</p></body></html>\n`);
+  fs.writeFileSync(path.join(dir, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>This page has moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${SITE}${to.split('#')[0]}"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>This page has moved. <a href="${to}">Continue</a>.</p></body></html>\n`);
 }
 
 // ---------- sitemap + robots ----------
