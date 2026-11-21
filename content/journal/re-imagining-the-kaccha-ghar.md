@@ -1,8 +1,8 @@
 ---
 title: "Re-imagining the Kaccha Ghar"
 date: "2026-06-24T08:46:57Z"
-updated: "2026-06-24T08:46:57Z"
-excerpt: "By Zahara Czar, Intern at Kaaya Learning Center, May-June 2026 The village of Tilwari in Uttarakhand is witnessing a quiet rise in newly constructed mud houses. For generations, mud homes were a natural part of rural Indian life, they are practical, locally sourced, and deeply connected to the environment. Yet over time, cement replaced mud as the symbol of development and modernity. Today, however, mud architecture is slowly finding its way back, not only in villages but also among urban..."
+updated: "2026-11-21T01:00:00Z"
+excerpt: "Mud houses, the kaccha ghar, are quietly returning to Tilwari village in Uttarakhand. An intern's field notes on why, and what building with earth still offers."
 cover: "/img/journal/re-imagining-the-kaccha-ghar/cover.jpg"
 topics: ["neighbourhoods", "origins"]
 minutes: 5
@@ -15,10 +15,6 @@ The village of Tilwari in Uttarakhand is witnessing a quiet rise in newly constr
 As information, consumption, and urban expansion continue to accelerate, many people are beginning to feel disconnected from the pace of modern life. In response, some are moving away from cities and toward quieter spaces that allow for greater mindfulness and simplicity. Kaaya was founded with a similar vision: to create a space rooted in slowness, sustainability, and appreciation for local knowledge systems. Built largely with mud and locally sourced materials, Kaaya integrates traditional Indian building practices into a contemporary lifestyle, showing that sustainability can also be aesthetic, comfortable, and deeply meaningful.
 
 ![Eye-level view of a traditional mud hut with modern design elements in Kaaya](/img/journal/re-imagining-the-kaccha-ghar/01.jpg "Still existing traditional mud house in Tilwari Village")
-
-The village of Tilwari in Uttarakhand is witnessing a quiet rise in newly constructed mud houses. For generations, mud homes were a natural part of rural Indian life, they are practical, locally sourced, and deeply connected to the environment. Yet over time, cement replaced mud as the symbol of development and modernity. Today, however, mud architecture is slowly finding its way back, not only in villages but also among urban populations searching for a slower and more intentional way of living.
-
-As information, consumption, and urban expansion continue to accelerate, many people are beginning to feel disconnected from the pace of modern life. In response, some are moving away from cities and toward quieter spaces that allow for greater mindfulness and simplicity. Kaaya was founded with a similar vision: to create a space rooted in slowness, sustainability, and appreciation for local knowledge systems. Built largely with mud and locally sourced materials, Kaaya integrates traditional Indian building practices into a contemporary lifestyle, showing that sustainability can also be aesthetic, comfortable, and deeply meaningful.
 
 ![A direct connect with nature](/img/journal/re-imagining-the-kaccha-ghar/02.jpg "A direct connect with nature")
 

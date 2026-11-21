@@ -275,10 +275,18 @@ write('/404.html', page({ key: 'post', h: head({ title: 'Page not found · Kaaya
 // ---------- Old addresses that moved ----------
 // A page or story whose address changed keeps a small page at the old one that sends readers on.
 // The /visit/ address comes from the earlier site; people still reach it from Google.
+// The earlier site kept stories under /blog/ and had Place, Learn, Incubate and Exchange sections.
 const MOVED = {
   '/journal/kaayas-rural-urban-connect-model/': '/journal/how-value-moves-both-ways/',
   '/visit/': '/learning-centre/#plan-h',
+  '/place/': '/the-idea/',
+  '/learn/': '/learning-centre/',
+  '/incubate/': '/fellowships/',
+  '/exchange/': '/journal/how-value-moves-both-ways/',
+  '/blog/': '/journal/',
+  '/blog/kaayas-rural-urban-connect-model/': '/journal/how-value-moves-both-ways/',
 };
+for (const p of posts) MOVED[`/blog/${p.slug}/`] = `/journal/${p.slug}/`;
 for (const [from, to] of Object.entries(MOVED)) {
   const dir = path.join(ROOT, from);
   fs.mkdirSync(dir, { recursive: true });
