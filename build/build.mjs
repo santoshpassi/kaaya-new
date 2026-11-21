@@ -149,7 +149,7 @@ const ledeOf = v => firstText(v, /<p class="lede[^"]*">([\s\S]*?)<\/p>/);
 
 const ORG = { '@type': 'Organization', name: 'Kaaya', url: SITE, logo: SITE + '/img/kaaya-mark.png', email: 'connect@kaaya.org', telephone: '+91-82799-59201',
   address: { '@type': 'PostalAddress', streetAddress: 'Village Tilwari', addressLocality: 'Dehradun', addressRegion: 'Uttarakhand', postalCode: '248197', addressCountry: 'IN' },
-  sameAs: ['https://www.kaaya-offline.com'] };
+  sameAs: ['https://www.kaaya-offline.com', 'https://www.instagram.com/kaayaliving/', 'https://www.facebook.com/kaayalearningcentre', 'https://www.linkedin.com/company/kaayalearningcentre', 'https://maps.app.goo.gl/W4HPkBPJ74ZyvZDb6'] };
 
 const HASH_REDIRECT = `<script>(function(){var h=location.hash.slice(1);if(!h)return;var m={home:'/',idea:'/the-idea/',community:'/community-and-climate/',fellowships:'/fellowships/',learning:'/learning-centre/',journal:'/journal/',model:'/the-model/'};var p=h.split('/');var t=m[p[0]]||(p[0]==='post'&&p[1]?'/journal/'+p[1]+'/':p[0]==='blog'?'/topics/'+(p[1]?p[1]+'/':''):null);if(t&&t!==location.pathname)location.replace(t);})();</script>`;
 
