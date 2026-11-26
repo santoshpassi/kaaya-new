@@ -119,6 +119,12 @@ figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:.4rem}
 .deeper{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem}
 .chip{border:1px solid var(--rule-strong);padding:.35rem .8rem;border-radius:999px;font-size:.92rem;background:var(--card)}
 .flowlist{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.3rem;color:var(--ink-soft)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.75rem;margin:.25rem 0;padding:1rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.facts div{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+.facts dt{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.facts dd{margin:0;color:var(--ink);line-height:1.4}
+.prose h3{font-size:1.15rem;margin-top:.5rem}
+.steps{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem;color:var(--ink-soft)}
 .draft{font-size:.82rem;color:var(--terra)}
 .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1rem;margin-top:1.75rem}
 .strip figure{margin:0;min-width:0}
@@ -408,20 +414,28 @@ nav.main{margin-left:auto}
   </div>
   <section aria-labelledby="slf-h">
     <div class="prose">
-      <p>An invitation to spend three months living on the campus as a small team, learning to live more lightly by building, growing and making things with your hands. Kaaya provides food and a place to stay. People from the village and invited practitioners come in from time to time to work alongside the team.</p>
-      <p><b>Who it is for:</b> people drawn to sustainable architecture, interior design, community living, or simply making and mending, especially those who like to repurpose, recycle and reuse. You do not need to be an expert; you need to want to learn by doing.</p>
-      <p><b>What we are working on now</b> (as of November 2026)</p>
-      <p>Fellows join work that is already under way here, and much of it we are still learning as we go. Right now that includes:</p>
+      <p>An invitation to spend three months living on the campus as a small team, learning to live more lightly by building, growing and making things with your hands. People from the village and invited practitioners come in from time to time to work alongside the team.</p>
+      <dl class="facts">
+        <div><dt>Length</dt><dd>Three months, starting when it suits you</dd></div>
+        <div><dt>For</dt><dd>Sustainable architecture, interior design, community living, making and mending</dd></div>
+        <div><dt>Kaaya offers</dt><dd>Food, a place to stay, and a small honorarium for events; no fee</dd></div>
+        <div><dt>Places</dt><dd>About three fellows at a time</dd></div>
+      </dl>
+      <p>You do not need to be an expert; you need to want to learn by doing, especially if you like to repurpose, recycle and reuse. Fellows cover their own travel.</p>
+      <h3>What we are working on now</h3>
+      <p>Fellows join work that is already under way, and much of it we are still learning as we go. As of November 2026:</p>
       <ul class="flowlist">
         <li>Restoring one of our Mud Earth cottages</li>
         <li>Setting up the Art Gallery at Kaaya</li>
         <li>Developing kitchen gardens, the Farmer's Market and Kaaya Nature Café</li>
         <li>Training with local women's groups</li>
       </ul>
-      <p>This changes as work begins and ends. When you write to us, tell us which of these draws you.</p>
-      <p><b>To apply:</b> write to <b>connect@kaaya.org</b> with your CV and a short note about yourself and why this interests you.</p>
-      <p><b>After you write:</b> we reply within a few days to ask when you could come and what you would like to work on. Santosh then sets up a conversation with you, and after it we write to you about next steps. We host about three fellows at a time, sometimes two or four, and fellows cover their own travel. Fellows pay no fee, and there is a small honorarium for taking part in events held during their stay.</p>
-      <p><b>When:</b> applications are open on a rolling basis, with no fixed start or end date. Three months is the time we have found it takes to really settle in and live the place.</p>
+      <h3>How to apply</h3>
+      <ol class="steps">
+        <li>Write to <b>connect@kaaya.org</b> with your CV, a short note about yourself, and which of the work above draws you.</li>
+        <li>We reply within a few days to ask when you could come and what you would like to work on.</li>
+        <li>Santosh sets up a conversation with you, and after it we write to you about next steps.</li>
+      </ol>
       </div>
   </section>
   <section><div class="prose"><p>Kaaya has other fellowships too: <a href="/fellowships/">see them all</a>.</p></div></section>

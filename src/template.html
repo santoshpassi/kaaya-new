@@ -104,6 +104,12 @@ figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:.4rem}
 .deeper{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem}
 .chip{border:1px solid var(--rule-strong);padding:.35rem .8rem;border-radius:999px;font-size:.92rem;background:var(--card)}
 .flowlist{margin:0;padding-left:1.1rem;display:flex;flex-direction:column;gap:.3rem;color:var(--ink-soft)}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.75rem;margin:.25rem 0;padding:1rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.facts div{display:flex;flex-direction:column;gap:.2rem;min-width:0}
+.facts dt{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.facts dd{margin:0;color:var(--ink);line-height:1.4}
+.prose h3{font-size:1.15rem;margin-top:.5rem}
+.steps{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.45rem;color:var(--ink-soft)}
 .draft{font-size:.82rem;color:var(--terra)}
 .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1rem;margin-top:1.75rem}
 .strip figure{margin:0;min-width:0}
@@ -627,20 +633,28 @@ nav.main{margin-left:auto}
     <p class="eyebrow">Call for applications</p>
     <h2 id="slf-h">Sustainable Living Fellowship</h2>
     <div class="prose">
-      <p>An invitation to spend three months living on the campus as a small team, learning to live more lightly by building, growing and making things with your hands. Kaaya provides food and a place to stay. People from the village and invited practitioners come in from time to time to work alongside the team.</p>
-      <p><b>Who it is for:</b> people drawn to sustainable architecture, interior design, community living, or simply making and mending, especially those who like to repurpose, recycle and reuse. You do not need to be an expert; you need to want to learn by doing.</p>
-      <p><b>What we are working on now</b> (as of November 2026)</p>
-      <p>Fellows join work that is already under way here, and much of it we are still learning as we go. Right now that includes:</p>
+      <p>An invitation to spend three months living on the campus as a small team, learning to live more lightly by building, growing and making things with your hands. People from the village and invited practitioners come in from time to time to work alongside the team.</p>
+      <dl class="facts">
+        <div><dt>Length</dt><dd>Three months, starting when it suits you</dd></div>
+        <div><dt>For</dt><dd>Sustainable architecture, interior design, community living, making and mending</dd></div>
+        <div><dt>Kaaya offers</dt><dd>Food, a place to stay, and a small honorarium for events; no fee</dd></div>
+        <div><dt>Places</dt><dd>About three fellows at a time</dd></div>
+      </dl>
+      <p>You do not need to be an expert; you need to want to learn by doing, especially if you like to repurpose, recycle and reuse. Fellows cover their own travel.</p>
+      <h3>What we are working on now</h3>
+      <p>Fellows join work that is already under way, and much of it we are still learning as we go. As of November 2026:</p>
       <ul class="flowlist">
         <li>Restoring one of our Mud Earth cottages</li>
         <li>Setting up the Art Gallery at Kaaya</li>
         <li>Developing kitchen gardens, the Farmer's Market and Kaaya Nature Café</li>
         <li>Training with local women's groups</li>
       </ul>
-      <p>This changes as work begins and ends. When you write to us, tell us which of these draws you.</p>
-      <p><b>To apply:</b> write to <b>connect@kaaya.org</b> with your CV and a short note about yourself and why this interests you.</p>
-      <p><b>After you write:</b> we reply within a few days to ask when you could come and what you would like to work on. Santosh then sets up a conversation with you, and after it we write to you about next steps. We host about three fellows at a time, sometimes two or four, and fellows cover their own travel. Fellows pay no fee, and there is a small honorarium for taking part in events held during their stay.</p>
-      <p><b>When:</b> applications are open on a rolling basis, with no fixed start or end date. Three months is the time we have found it takes to really settle in and live the place.</p>
+      <h3>How to apply</h3>
+      <ol class="steps">
+        <li>Write to <b>connect@kaaya.org</b> with your CV, a short note about yourself, and which of the work above draws you.</li>
+        <li>We reply within a few days to ask when you could come and what you would like to work on.</li>
+        <li>Santosh sets up a conversation with you, and after it we write to you about next steps.</li>
+      </ol>
       <p class="call-link"><a href="/fellowships/sustainable-living/">This call on a page of its own, to share →</a></p>
     </div>
   </section>
@@ -648,41 +662,52 @@ nav.main{margin-left:auto}
     <p class="eyebrow">Call for applications</p>
     <h2 id="imm-h">Kaaya Immersion</h2>
     <div class="prose">
-      <p>One week, fifteen days or a month on the campus, for anyone over 18 who wants to learn by joining real work in a village. Immersion participants live alongside the fellows and the team, join the work already under way, often with a fellow, and share in the daily work of the household.</p>
-      <p><b>Who it is for:</b> students, young people and anyone curious about living more simply and working with their hands. No experience is needed.</p>
-      <p><b>Contribution:</b> fellows bring a skill and take on a piece of work, so Kaaya hosts them. Immersion participants come mainly to learn, so they contribute towards their food and stay, on a sliding scale so that cost is not what decides who comes. The standard contribution is ₹900 a day. Those who can give more help us host someone who can't, and for young people with genuine interest and limited means, especially from the villages nearby, we reduce or waive it. We settle the amount in conversation.</p>
-      <p><b>Living here:</b> you help in the kitchen, wash your own utensils and clothes, and keep your bed and room in order. Most people stay in shared rooms or the dormitory, and meals come from the community kitchen, eaten together. Weekends are our busiest days, with Friday Musings, Saturday Retro Night and Sunday Brunch, so the weekly day off falls on a weekday. Once a week everyone sits together to reflect on what worked and what we learnt, and before leaving you write a short field note on your time here.</p>
-      <p><b>To apply:</b> write to <b>connect@kaaya.org</b> with a little about yourself, the dates or length you have in mind, what you hope to learn, and which contribution level fits you. We reply to every application and set up a conversation. We host four to five immersion participants at a time, on a rolling basis, and places are offered at Kaaya's discretion. Travel to and from Kaaya is your own.</p>
+      <p>A shorter stay for anyone over 18 who wants to learn by joining real work in a village. You live alongside the fellows and the team, join the work already under way, often with a fellow, and share in the daily work of the household.</p>
+      <dl class="facts">
+        <div><dt>Length</dt><dd>One week, fifteen days or a month</dd></div>
+        <div><dt>For</dt><dd>Anyone over 18; no experience needed</dd></div>
+        <div><dt>Contribution</dt><dd>₹900 a day for food and stay, on a sliding scale</dd></div>
+        <div><dt>Places</dt><dd>Four to five at a time, on a rolling basis</dd></div>
+      </dl>
+      <h3>About the contribution</h3>
+      <p>Fellows bring a skill and take on a piece of work, so Kaaya hosts them. Immersion participants come mainly to learn, so they contribute towards their food and stay. The scale slides so that cost is not what decides who comes: those who can give more help us host someone who can't, and for young people with genuine interest and limited means, especially from the villages nearby, we reduce or waive it. We settle the amount in conversation. Travel to and from Kaaya is your own.</p>
+      <h3>Living here</h3>
+      <ul class="flowlist">
+        <li>You help in the kitchen, wash your own utensils and clothes, and keep your bed and room in order.</li>
+        <li>Most people stay in shared rooms or the dormitory; meals come from the community kitchen, eaten together.</li>
+        <li>Weekends are our busiest days, so the weekly day off falls on a weekday.</li>
+        <li>Once a week everyone sits together to reflect on what worked and what we learnt, and before leaving you write a short field note.</li>
+      </ul>
+      <h3>How to apply</h3>
+      <ol class="steps">
+        <li>Write to <b>connect@kaaya.org</b> with a little about yourself, the dates or length you have in mind, what you hope to learn, and which contribution level fits you.</li>
+        <li>We reply to every application and set up a conversation.</li>
+        <li>Places are offered at Kaaya's discretion, and we write to you with dates.</li>
+      </ol>
       <p class="call-link"><a href="/fellowships/immersion/">This call on a page of its own, to share →</a></p>
     </div>
   </section>
   <section aria-labelledby="living-h">
     <h2 id="living-h">Living at Kaaya</h2>
-    <div class="prose">
-      <p>Kaaya is a working village campus and a rural homestay run by women from the village. Fellows and immersion participants live here as part of the household, not as guests. A few things help a small community live and work well together:</p>
-      <ul class="flowlist">
-        <li>Fellowships and immersions are open only to people aged 18 and above. Please bring a photo ID.</li>
-        <li>Get to know the team and the village; most of what you learn here comes from them.</li>
-        <li>Dress modestly in the village, and ask before photographing people, especially women and children.</li>
-        <li>Let the team know when you leave the campus and when you expect to be back.</li>
-        <li>Kaaya is also home to café visitors and staying guests, so keep guest spaces calm, and post about guests, team members or villagers only with their consent.</li>
-        <li>Leave no plastic or litter behind, on campus or in the village.</li>
-        <li>No alcohol, smoking or other intoxicants on the campus, and no loud music.</li>
-        <li>Work takes about five to six hours a day, five days a week. The rest of the time is your own, to rest, read, walk or simply be.</li>
-      </ul>
-      <p>On arrival, everyone signs a short undertaking to follow these guidelines and to take care of their own travel, belongings and health. If you need to leave early, please give us a week's notice; when you leave early for a reason we agree on, any advance you paid is refunded, less the days you stayed. Kaaya does not share your work on its own. We may invite you to write about your time here on the Kaaya Journal or leave a few words for others, and that is your choice.</p>
+    <div class="prose"><p>Kaaya is a working village campus and a rural homestay run by women from the village. Fellows and immersion participants live here as part of the household, not as guests. A few things help a small community live and work well together.</p></div>
+    <div class="uses" style="margin-top:1.5rem">
+      <div class="use"><h3>Who can come</h3><p>Fellowships and immersions are open only to people aged 18 and above. Please bring a photo ID.</p></div>
+      <div class="use"><h3>In the village</h3><p>Get to know the team and the village; most of what you learn here comes from them. Dress modestly, ask before photographing people, especially women and children, and let the team know when you leave the campus.</p></div>
+      <div class="use"><h3>On the campus</h3><p>Café visitors and staying guests share the place, so keep guest spaces calm. No alcohol, smoking or other intoxicants, no loud music, and no plastic or litter left behind.</p></div>
+      <div class="use"><h3>Your time</h3><p>Work takes about five to six hours a day, five days a week. The rest of the time is your own, to rest, read, walk or simply be.</p></div>
+      <div class="use"><h3>If you need to leave early</h3><p>Please give us a week's notice. When you leave early for a reason we agree on, any advance you paid is refunded, less the days you stayed.</p></div>
+      <div class="use"><h3>Your work and your story</h3><p>Kaaya does not share your work on its own, or post about guests, the team or villagers without their consent. We may invite you to write about your time here on the Journal, and that is your choice.</p></div>
     </div>
+    <p class="coin-note">On arrival, everyone signs a short undertaking to follow these guidelines and to take care of their own travel, belongings and health.</p>
   </section>
   <section aria-labelledby="camps-h">
     <h2 id="camps-h">Camps for school students and families</h2>
-    <div class="prose">
-      <p>Alongside the rolling programmes, Kaaya runs camps on fixed dates, announced well in advance. They are priced separately, because children need dedicated facilitators and experts.</p>
-      <ul class="flowlist">
-        <li><b>Children's camps:</b> for students in Classes 8 to 12; six days and five nights; in June, and in November, December or January.</li>
-        <li><b>Parent and child weekends:</b> for a parent with children aged 6 to 14; Friday to Sunday.</li>
-      </ul>
-      <p>The first camps run in January 2027. Dates, fees and registration are on <a href="https://www.kaaya-offline.com/camps" target="_blank" rel="noopener">Kaaya Offline ↗</a>.</p>
+    <div class="prose"><p>Alongside the rolling programmes, Kaaya runs camps on fixed dates, announced well in advance. They are priced separately, because children need dedicated facilitators and experts.</p></div>
+    <div class="uses" style="margin-top:1.5rem">
+      <div class="use"><h3>Children's camps</h3><p>For students in Classes 8 to 12. Six days and five nights, in June, and in November, December or January.</p></div>
+      <div class="use"><h3>Parent and child weekends</h3><p>For a parent with children aged 6 to 14. Friday to Sunday, three days and two nights.</p></div>
     </div>
+    <p class="coin-note">The first camps run in January 2027. Dates, fees and registration are on <a href="https://www.kaaya-offline.com/camps" target="_blank" rel="noopener">Kaaya Offline ↗</a>.</p>
   </section>
 </div>
 
