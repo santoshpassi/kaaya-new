@@ -222,6 +222,15 @@ const CALLS = {
     img: '/img/call-pottery.jpg',
     alt: "Hands shaping clay on a potter's wheel",
   },
+  'immersion': {
+    section: 'imm-h',
+    title: 'Kaaya Immersion · Call for applications · Kaaya',
+    h1: 'Kaaya Immersion',
+    lede: 'One week, fifteen days or a month on the Kaaya campus in Tilwari, Dehradun, for anyone over 18. Applications are open now, on a rolling basis.',
+    desc: 'One week, fifteen days or a month on the Kaaya campus in Tilwari, Dehradun, joining real work in a village alongside the fellows and the team. Open to anyone over 18, on a rolling basis.',
+    img: '/img/fl-field.jpg',
+    alt: 'Volunteers preparing a terraced field alongside a farmer from the village',
+  },
 };
 for (const [slug, c] of Object.entries(CALLS)) {
   const m = views.fellowships.match(new RegExp(`<section aria-labelledby="${c.section}">([\\s\\S]*?)</section>`));
