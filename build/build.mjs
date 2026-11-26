@@ -209,6 +209,44 @@ for (const [key, s] of Object.entries(SECTIONS)) {
   write(s.path, page({ key, h: head({ title, desc, url, img: s.img, ld }), view: withFeed(views[key], key), share: shareBar(title, url) }));
 }
 
+// ---------- Calls: one page of its own for each open call, to share ----------
+// The call's text lives once, in its section of the Fellowships page in src/template.html;
+// its own page copies that section, with a picture and share preview of its own.
+const CALLS = {
+  'sustainable-living': {
+    section: 'slf-h',
+    title: 'Sustainable Living Fellowship · Call for applications · Kaaya',
+    h1: 'Sustainable Living Fellowship',
+    lede: 'Three months on the Kaaya campus in Tilwari, Dehradun. Applications are open now, on a rolling basis.',
+    desc: 'A three-month stay on the Kaaya campus in Tilwari, Dehradun, learning to live more lightly by building, growing and making things by hand. Applications are open on a rolling basis.',
+    img: '/img/call-pottery.jpg',
+    alt: "Hands shaping clay on a potter's wheel",
+  },
+};
+for (const [slug, c] of Object.entries(CALLS)) {
+  const m = views.fellowships.match(new RegExp(`<section aria-labelledby="${c.section}">([\\s\\S]*?)</section>`));
+  if (!m) { console.log('Call section not found: ' + c.section); continue; }
+  const body = m[1]
+    .replace(/<p class="eyebrow">[\s\S]*?<\/p>\s*/, '')
+    .replace(/<h2 id="[^"]*">[\s\S]*?<\/h2>\s*/, '')
+    .replace(/<p class="call-link">[\s\S]*?<\/p>\s*/g, '');
+  const url = `${SITE}/fellowships/${slug}/`;
+  const view = `<div id="view-fellowships" data-page="fellowships">
+  <div class="band">
+    <div class="model-head">
+      <p class="eyebrow">Call for applications</p>
+      <h1>${esc(c.h1)}</h1>
+      <p class="lede">${esc(c.lede)}</p>
+    </div>
+    <img src="${c.img}" alt="${esc(c.alt)}">
+  </div>
+  <section aria-labelledby="${c.section}">${body}</section>
+  <section><div class="prose"><p>Kaaya has other fellowships too: <a href="/fellowships/">see them all</a>.</p></div></section>
+</div>`;
+  const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: c.h1, url, isPartOf: SITE, publisher: ORG };
+  write(`/fellowships/${slug}/`, page({ key: 'fellowships', h: head({ title: c.title, desc: c.desc, url, img: c.img, ld }), view, share: shareBar(c.title, url) }));
+}
+
 // ---------- Held-back section pages ----------
 // While The model is held back, its address shows a short "coming soon" note instead of
 // "page not found". Kept out of the sitemap and out of search (noindex).
