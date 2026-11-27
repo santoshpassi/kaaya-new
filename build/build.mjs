@@ -210,8 +210,9 @@ for (const [key, s] of Object.entries(SECTIONS)) {
 }
 
 // ---------- Calls: one page of its own for each open call, to share ----------
-// The call's text lives once, in its section of the Fellowships page in src/template.html;
-// its own page copies that section, with a picture and share preview of its own.
+// The Fellowships page carries a short entry for each programme. The full text of each
+// call lives once, in view-calls in src/template.html; each call's page is made from its
+// section there, with "Why we open our doors" before it and "Living at Kaaya" after it.
 const CALLS = {
   'sustainable-living': {
     section: 'slf-h',
@@ -222,23 +223,23 @@ const CALLS = {
     img: '/img/call-pottery.jpg',
     alt: "Hands shaping clay on a potter's wheel",
   },
-  'immersion': {
-    section: 'imm-h',
-    title: 'Kaaya Immersion · Call for applications · Kaaya',
-    h1: 'Kaaya Immersion',
-    lede: 'One week, fifteen days or a month on the Kaaya campus in Tilwari, Dehradun, for anyone over 18. Applications are open now, on a rolling basis.',
-    desc: 'One week, fifteen days or a month on the Kaaya campus in Tilwari, Dehradun, joining real work in a village alongside the fellows and the team. Open to anyone over 18, on a rolling basis.',
+  'judaav': {
+    section: 'judaav-h',
+    title: 'Judaav · Call for applications · Kaaya',
+    h1: 'Judaav',
+    lede: 'Reconnecting with the roots. One week, fifteen days or a month on the Kaaya campus in Tilwari, Dehradun, for anyone over 18. Applications are open now, on a rolling basis.',
+    desc: 'Judaav, reconnecting with the roots: one week, fifteen days or a month on the Kaaya campus in Tilwari, Dehradun, joining real work in a village alongside the fellows and the team. Open to anyone over 18, on a rolling basis.',
     img: '/img/fl-field.jpg',
     alt: 'Volunteers preparing a terraced field alongside a farmer from the village',
   },
 };
+const callSection = id => {
+  const m = (views.calls || '').match(new RegExp(`<section aria-labelledby="${id}">[\\s\\S]*?</section>`));
+  if (!m) console.log('Call section not found: ' + id);
+  return m ? m[0] : '';
+};
 for (const [slug, c] of Object.entries(CALLS)) {
-  const m = views.fellowships.match(new RegExp(`<section aria-labelledby="${c.section}">([\\s\\S]*?)</section>`));
-  if (!m) { console.log('Call section not found: ' + c.section); continue; }
-  const body = m[1]
-    .replace(/<p class="eyebrow">[\s\S]*?<\/p>\s*/, '')
-    .replace(/<h2 id="[^"]*">[\s\S]*?<\/h2>\s*/, '')
-    .replace(/<p class="call-link">[\s\S]*?<\/p>\s*/g, '');
+  const call = callSection(c.section); if (!call) continue;
   const url = `${SITE}/fellowships/${slug}/`;
   const view = `<div id="view-fellowships" data-page="fellowships">
   <div class="band">
@@ -249,7 +250,9 @@ for (const [slug, c] of Object.entries(CALLS)) {
     </div>
     <img src="${c.img}" alt="${esc(c.alt)}">
   </div>
-  <section aria-labelledby="${c.section}">${body}</section>
+  ${callSection('doors-h')}
+  ${call.replace(/<h2 id="[^"]*">[\s\S]*?<\/h2>\s*/, '')}
+  ${callSection('living-h')}
   <section><div class="prose"><p>Kaaya has other fellowships too: <a href="/fellowships/">see them all</a>.</p></div></section>
 </div>`;
   const ld = { '@context': 'https://schema.org', '@type': 'WebPage', name: c.h1, url, isPartOf: SITE, publisher: ORG };
@@ -329,6 +332,7 @@ const MOVED = {
   '/place/': '/the-idea/',
   '/learn/': '/learning-centre/',
   '/incubate/': '/fellowships/',
+  '/fellowships/immersion/': '/fellowships/judaav/',
   '/exchange/': '/journal/how-value-moves-both-ways/',
   '/blog/': '/journal/',
   '/blog/kaayas-rural-urban-connect-model/': '/journal/how-value-moves-both-ways/',
