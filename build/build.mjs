@@ -338,10 +338,42 @@ const MOVED = {
   '/blog/kaayas-rural-urban-connect-model/': '/journal/how-value-moves-both-ways/',
 };
 for (const p of posts) MOVED[`/blog/${p.slug}/`] = `/journal/${p.slug}/`;
+// Addresses from the old WordPress site that Google and old links still ask for (Search Console,
+// Nov 2026). Old stories sat at the top level under the same name; old section pages go to the
+// nearest page here. The café and its events now live on kaaya-offline.com.
+for (const p of posts) MOVED[`/${p.slug}/`] = `/journal/${p.slug}/`;
+Object.assign(MOVED, {
+  '/kaaya-nature-cafe/': 'https://www.kaaya-offline.com/',
+  '/events/': 'https://www.kaaya-offline.com/',
+  '/contact-us/': '/learning-centre/#plan-h',
+  '/padav/': '/fellowships/',
+  '/upcoming-fellowship/': '/fellowships/',
+  '/fellowships/padav-updates/': '/fellowships/',
+  '/residency/': '/fellowships/',
+  '/artists-residency-programme/': '/fellowships/',
+  '/artists-residency-program/': '/fellowships/',
+  '/writers-in-residence/': '/fellowships/',
+  '/volunteering-internship/': '/fellowships/',
+  '/volunteering-and-internships-at-kaaya/': '/fellowships/',
+  '/eco-school/': '/learning-centre/',
+  '/nature-camps/': '/learning-centre/',
+  '/nature-camp/': '/learning-centre/',
+  '/explorers-camp/': '/learning-centre/',
+  '/workshops/': '/learning-centre/',
+  '/ngo-workshop/': '/learning-centre/',
+  '/neighbourhoods/': '/community-and-climate/',
+  '/empowering-neighbourhoods/': '/community-and-climate/',
+  '/kaaya-model/': '/journal/how-value-moves-both-ways/',
+  '/kaaya-living/': '/the-idea/',
+  '/making-of-kaaya/people/': '/the-idea/',
+  '/feminine-spaces/': '/journal/feminine-spaces-transforming-tourism/',
+  '/intern-blog/': '/journal/intern-speaks/',
+  '/reflections/': '/topics/reflections/',
+});
 for (const [from, to] of Object.entries(MOVED)) {
   const dir = path.join(ROOT, from);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>This page has moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${SITE}${to.split('#')[0]}"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>This page has moved. <a href="${to}">Continue</a>.</p></body></html>\n`);
+  fs.writeFileSync(path.join(dir, 'index.html'), `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>This page has moved</title><meta name="robots" content="noindex"><link rel="canonical" href="${/^https?:/.test(to) ? to : SITE + to.split('#')[0]}"><meta http-equiv="refresh" content="0; url=${to}"></head><body><p>This page has moved. <a href="${to}">Continue</a>.</p></body></html>\n`);
 }
 
 // ---------- sitemap + robots ----------
